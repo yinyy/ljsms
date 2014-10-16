@@ -1,0 +1,42 @@
+﻿
+div#investigate_page{
+    text-align: center;
+}
+
+div#investigate_range{
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+    width: 1000px;
+    margin: 20px auto;
+    text-align: left;
+    padding: 40px;
+    color: #666666;
+    font-family: 'Microsoft YaHei';
+}
+
+table.question{
+    background-color: #dbdbdb;
+    font-size: 14px;
+    width: 100%;
+}
+
+table.question tr td:first-child{
+    width: 200px;
+}
+
+table.question tr td{
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+table.question tr td input{
+    border:1px solid #77a5b4;
+    padding: 5px;
+}
+
+table.question tr td textarea{
+    border:1px solid #77a5b4;
+    overflow: hidden;
+}

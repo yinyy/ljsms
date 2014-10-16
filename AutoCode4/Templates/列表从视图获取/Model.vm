@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.ComponentModel;
+using DB.Common;
+using DB.Common.Data;
+
+namespace ${opts.namespace}.Model
+{
+	[TableName("${opts.tablename}")]
+	[Description("${opts.TableDescription}")]
+	public class ${opts.modelname}
+	{
+		#foreach($item in ${code.getcolumns()})/// <summary>
+		/// ${opts.GetCName(${item.name})}
+		/// </summary>
+		[Description("${opts.GetCName(${item.name})}")]
+		public ${code.sqldatatypeto(${item.datatype})} ${item.name} { get; set; }
+      
+		#end
+		
+		public override string ToString()
+		{
+			return JSONhelper.ToJson(this);
+		}
+	}
+}

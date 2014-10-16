@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using DB.Common.Data;
+using DB.Common.Provider;
+
+using ${opts.namespace}.Model;
+
+namespace ${opts.namespace}.Dal
+{
+    public class ${opts.dalname} : BaseRepository<${opts.modelname}>
+    {
+        public static ${opts.dalname} Instance
+        {
+            get { return SingletonProvider<${opts.dalname}>.Instance; }
+        }
+
+        public string GetJson(int pageindex, int pagesize, string filterJson, string sort = "keyid",
+                              string order = "asc")
+        {
+            return base.JsonDataForEasyUIdataGrid(TableConvention.Resolve(typeof(${opts.modelname})), pageindex, pagesize, filterJson,
+                                                  sort, order);
+        }
+    }
+}

@@ -1,0 +1,46 @@
+<form id="suiform">
+     <div id="studentTab" fit="true" style="height: 365px; overflow: hidden;"  class="easyui-tabs">
+         <div title="基本信息" style="padding: 2px; overflow: hidden;">
+            
+    <table class="grid">
+            
+             <tr><td>所学专业：</td><td><input type="text" id="txt_Profession" name="Profession" class="easyui-combotree"   /></td></tr>
+             <tr><td>所在班级：</td><td><input type="text" id="txt_ClassID" name="ClassID"  class="easyui-combobox" /></td></tr>
+             <tr><td>学号：</td><td><input type="text" id="txt_StudentNumber" name="StudentNumber"  class="easyui-validatebox" data-options="required:true,validType:'length[10,15]'" /></td></tr>
+             <tr><td>姓名：</td><td><input type="text" id="txt_Name" name="Name"  class="easyui-validatebox" data-options="required:true,validType:'length[1,10]'" /></td></tr>
+             <tr><td>性别：</td><td><select name="Gender" data-bind="value:Gender" style="width:60px" id="txt_Gender"><option value="男">男</option><option value="女">女</option></select></td></tr>
+
+
+             <tr><td>民族：</td><td><input type="text" id="txt_Nationality" name="Nationality" class="easyui-combobox" /></td></tr>
+            <tr><td>政治面貌：</td><td><input type="text" id="txt_PoliticalStatus" name="PoliticalStatus" class="easyui-combobox" /></td></tr>
+            <tr><td>身份证号：</td><td><input type="text" id="txt_Card" name="Card" class="easyui-validatebox" data-options="required:true,validType:'length[18,18]'" /></td></tr>
+            
+        </table>
+             </div>
+         <div title="联系方式"  style="padding: 2px">
+             <table class="grid">
+             <tr><td>通讯地址：</td><td><input type="text" id="txt_Address" name="Address" class="txt03" /></td></tr>
+            <tr><td>家庭电话：</td><td><input type="text" id="txt_HomePhone" name="HomePhone" class="txt03" /></td></tr>
+            <tr><td>父亲：</td><td><input type="text" id="txt_Father" name="Father" class="txt03" /></td></tr>
+            <tr><td>母亲：</td><td><input type="text" id="txt_Mother" name="Mother" class="txt03" /></td></tr>
+            <tr><td>联系电话：</td><td><input type="text" id="txt_Phone" name="Phone" class="easyui-validatebox" data-options="required:true,validType:'length[7,15]'" /></td></tr>
+            <tr><td>QQ：</td><td><input type="text" id="txt_QQ" name="QQ" class="txt03" /></td></tr>
+            <tr><td>Email：</td><td><input type="text" id="txt_Email" name="Email" class="easyui-validatebox" data-options="required:true,validType:'email'" /></td></tr>
+            <tr><td>住宿地点：</td><td><input type="text" id="txt_Hostel" name="Hostel" class="txt03" /></td></tr>
+
+            </table>
+             </div>
+         <div title="其他信息"  style="padding: 2px">
+             <table class="grid">
+             <tr><td>入学分数：</td><td><input type="text" id="txt_AdmissionScore" name="AdmissionScore" class="easyui-validatebox" data-options="digits:true" /></td></tr>
+            <tr><td>身体状况：</td><td><input type="text" id="txt_PhysicalStatus" name="PhysicalStatus" class="txt03" /></td></tr>
+            <tr><td>生源地：</td><td><input type="text" id="txt_ComeFrom" name="ComeFrom" class="txt03" /></td></tr>
+            <tr><td>干部信息：</td><td><input type="text" id="txt_LeaderInfo" name="LeaderInfo" class="txt03" /></td></tr>
+            <tr><td>备注信息：</td><td><input type="text" id="txt_Remark" name="Remark" class="txt03" /></td></tr>
+
+            </table>
+        </div>
+
+     </div>
+             
+  </form>

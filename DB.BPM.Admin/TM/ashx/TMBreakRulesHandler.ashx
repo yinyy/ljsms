@@ -1,0 +1,1 @@
+<%@ WebHandler Language="C#" CodeBehind="TMBreakRulesHandler.ashx.cs" Class="DB.BPM.Admin.TM.ashx.TMBreakRulesHandler" %>

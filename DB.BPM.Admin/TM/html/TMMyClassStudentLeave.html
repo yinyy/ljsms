@@ -1,0 +1,25 @@
+﻿<form id="uiform"><table class="grid"> 
+
+<tr><td>所在班级：</td><td><input type="text" id="txt_ClassID" name="ClassID"  class="easyui-combobox" /></td></tr>
+            
+<tr><td>学生：</td><td><input type="text" id="txt_StudentID" name="StudentID" class="easyui-combobox" data-options="required:true" /></td></tr>
+<tr><td>申请日期：</td><td><input type="text" id="txt_ApplyDate" name="ApplyDate" class="easyui-datebox" /></td></tr>
+<tr><td>开始日期：</td><td><input type="text" id="txt_LeaveStart" name="LeaveStart" class="easyui-datebox"  data-options="required:true"/></td></tr>
+<tr><td>结束日期：</td><td><input type="text" id="txt_LeaveEnd" name="LeaveEnd" class="easyui-datebox"  data-options="required:true"/></td></tr>
+<tr><td>请假类别：</td><td><input type="text" id="txt_LeaveClass" name="LeaveClassID" class="easyui-combobox"  data-options="required:true"/></td></tr>
+<tr><td>请假理由：</td><td><input type="text" id="txt_LeaveReason" name="LeaveReason" class="txt03" /></td></tr>
+<tr><td>班主任审批：</td><td>
+
+        
+     <select id="txt_ClassApprove" name="ClassApprove"  class="easyui-combobox">
+    <option value="同意">同意</option>
+    <option value="不同意">不同意</option>   
+        <option value="同意转辅导员审批">同意转辅导员审批</option>       
+</select>      
+
+                 </td></tr>
+<tr><td>离校情况：</td><td><input type="text" id="txt_LeaveSchool" name="LeaveSchool" class="txt03" /></td></tr>
+<tr><td>备用联系方式：</td><td><input type="text" id="txt_LeavePhone" name="LeavePhone" class="txt03" /></td></tr>
+<tr><td>返校日期：</td><td><input type="text" id="txt_LeaveBack" name="LeaveBack" class="easyui-datebox" /></td></tr>
+<tr><td>备注信息：</td><td><input type="text" id="txt_Remark" name="Remark" class="txt03" /></td></tr>
+</table></form>

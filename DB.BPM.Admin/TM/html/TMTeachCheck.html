@@ -1,0 +1,86 @@
+<form id="uiform"><table class="grid">
+    <tr><td style="width:40px">教师：</td><td style="width:80px"><input type="text" id="txt_TrueTeacher" name="TeacherID" class="easyui-combobox"  /></td>
+        <td  style="width:40px">日期：</td><td><input type="text" id="txt_TeachDate" name="TeachDate" class="easyui-datebox" /></td>
+        
+        <td>节次：</td><td><select id="txt_TeachTime" name="TeachTime" style="width:auto"  class="easyui-combobox" >
+            <option value="1">1</option>    
+    <option value="2">2</option>
+    <option value="3">3</option> 
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option> 
+    <option value="8">7</option>
+    <option value="5">8</option>  
+            <option value="1-2">1-2</option> 
+        <option value="2-3">2-3</option>        
+    <option value="3-4">3-4</option>
+    <option value="5-6">5-6</option>
+            <option value="6-7">6-7</option>  
+    <option value="7-8">7-8</option>
+    <option value="9-10">9-10</option>
+            <option value="晚自习">晚自习</option> 
+             </select> 
+                     </td> 
+         <td>星期：</td><td><select id="txt_TeachDay" name="TeachDay"  class="easyui-combobox">
+              <option value="星期一">星期一</option>
+              <option value="星期二">星期二</option>
+              <option value="星期三">星期三</option>    
+              <option value="星期四">星期四</option>
+              <option value="星期五">星期五</option> 
+              <option value="星期六">星期六</option>
+              <option value="星期日">星期日</option>
+             </select>
+           
+             <a id="btn_searchclass" href="#" plain="true" class="easyui-linkbutton" title="查找授课">查找授课</a>
+                     </td>
+    </tr><tr>
+        <td>课程：</td><td colspan="3"><select id="txt_CourseID" name="VTeachCourseID"  disabled="disabled" class="easyui-combogrid" ></select></td>
+       <td>周次：</td><td><select id="txt_TeachWeeks" name="TeachWeeks"  class="easyui-combobox" >
+         <option value="1">第1周</option>
+    <option value="2">第2周</option> 
+    <option value="3">第3周</option>
+    <option value="4">第4周</option> 
+    <option value="5">第5周</option>
+    <option value="6">第6周</option> 
+    <option value="7">第7周</option>
+    <option value="8">第8周</option>
+    <option value="9">第9周</option>
+    <option value="10">第10周</option> 
+    <option value="11">第11周</option>
+    <option value="12">第12周</option> 
+    <option value="13">第13周</option>
+    <option value="14">第14周</option> 
+    <option value="15">第15周</option>
+    <option value="16">第16周</option>
+    <option value="17">第17周</option>    
+    <option value="18">第18周</option>
+    <option value="19">第19周</option> 
+    <option value="20">第20周</option>
+    <option value="21">第21周</option>
+            </select>
+        </td>
+         
+        <td>地点：</td><td><input type="text" id="txt_TeachRoomID" name="TeachRoomID" class="easyui-combotree" /></td></tr>
+     <tr><td>教学<br />记录：</td><td  colspan="7"><textarea style="height:40px;width:720px" id="txt_TeachLog" name="TeachLog" ></textarea>
+     </td></tr>
+
+
+</table>
+
+    <div style="margin-top: 10px">
+
+        <table id="details" ></table>
+         
+    </div>
+    
+   <!-- <div id="tools">
+            
+            <a id="a_add1"  href="javascript:;" plain="true" class="easyui-linkbutton"   icon="icon-add" title="添加">添加</a>
+      
+            <a id="a_delete1" href="javascript:;" plain="true"  class="easyui-linkbutton" icon="icon-delete3" title="删除">删除</a>
+
+        </div>-->
+    
+
+
+</form>

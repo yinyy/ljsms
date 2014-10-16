@@ -1,0 +1,1 @@
+<%@ WebHandler Language="C#" CodeBehind="TMInvestigateItemHandler.ashx.cs" Class="DB.BPM.Admin.TM.ashx.TMInvestigateItemHandler" %>

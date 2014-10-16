@@ -1,0 +1,232 @@
+﻿var actionCommon = '/TM/ashx/TMCommon.ashx';
+var actionURL = '/TM/ashx/TMTeachCheckHandler.ashx';
+var actionURLClass = '/TM/ashx/TMClassInfoHandler.ashx';
+var actionURLS = '/TM/ashx/TMStudentsHandler.ashx';
+var wherestr = "";
+var uid = 0;
+var term = null;
+$(function () {
+ $.getJSON(actionCommon + "?nm=GetUid", function (d) {
+     uid=eval(d).uid;
+ });
+  
+    autoResize({ dataGrid: '#list', gridType: 'datagrid', callback: grid.bind, height: 0 });
+   
+    $('#a_search').click(function () {
+        search.go('list');
+    });
+    $('#ToExcel').click(function () {
+        $('body').data('where', wherestr);
+        var ee = new ExportExcel('list', "V_TM_TeachCheckStudentDetailInfo");
+        ee.go();
+    });
+    $.getJSON(actionURLClass + "?" + createParam("proffession"), function (d) {
+        d = JSON.stringify(d).replace(/KeyId/g, "id").replace(/Title/g, "text");
+        d = '[{id:0,text:"== 请选择专业 =="},' + d.substr(1);
+        $('#txt_Profession').combotree({
+            width: '230',
+            editable: false,
+            data: eval(d),
+            value: 0,
+            onChange: function (newValue, oldValue) {
+
+                $.getJSON(actionURLS + '?' + createParam('classes', newValue), function (dd) {
+                    if (dd.length <= 0) {
+                        alert("本专业暂无班级!");
+
+                    }
+                    dd = JSON.stringify(dd);
+
+                    $('#txt_ClassID').combobox({
+                        valueField: 'KeyId',
+                        textField: 'ClassName',
+                        data: eval(dd),
+                        editable: false,
+                        requried: true,
+                        onChange: function (nV, oV) {
+                            var ruleArr = [];
+                            ruleArr.push({ "field": "ClassID", "op": "eq", "data": nV });
+                            ruleArr.push({ "field": "ClassLeaderID", "op": "eq", "data": uid });
+                            if (ruleArr.length > 0) {
+                                var filterObj = { groupOp: 'AND', rules: ruleArr };
+                                wherestr = JSON.stringify(filterObj);
+                                $('#list').datagrid('load', { filter: JSON.stringify(filterObj) });
+                            }
+
+
+                           // $('#list').datagrid({ url: actionURL + "?action=GetByClass&cid=" + nV + "&rq=class" });
+                            // $('#list').datagrid('clearSelections').datagrid('reload', { filter: ' ' });
+                        }
+
+
+                    });
+                })
+            }
+        });
+
+    });
+    $("#btn_NumberSearch").click(function () {
+        var num = $("#txt_StudentNumber").val();
+        if (num == "") {
+            alert(uid);
+            alert("请输入学号！");
+            return;
+        }
+        else {
+            var ruleArr = [];
+            ruleArr.push({ "field": "StudentNumber", "op": "cn", "data": num });
+            ruleArr.push({ "field": "ClassLeaderID", "op": "eq", "data": uid });
+            if (ruleArr.length > 0) {
+                var filterObj = { groupOp: 'AND', rules: ruleArr };
+                wherestr = JSON.stringify(filterObj);
+                $('#list').datagrid('load', { filter: JSON.stringify(filterObj) });
+            }
+
+
+           // $('#list').datagrid({ url: actionURL + "?action=GetBynumber&nm=" + num + "&rq=class" });
+            // $('#list').datagrid('clearSelections').datagrid('reload', { filter: ' ' });
+        }
+
+    });
+    $("#btn_NameSearch").click(function () {
+        var num = $("#txt_Name").val();
+        if (num == "") {
+            alert("请输入姓名！");
+            return;
+        }
+        else {
+            var ruleArr = [];
+            ruleArr.push({ "field": "Name", "op": "cn", "data": num });
+            ruleArr.push({ "field": "ClassLeaderID", "op": "eq", "data": uid });
+            if (ruleArr.length > 0) {
+                var filterObj = { groupOp: 'AND', rules: ruleArr };
+                wherestr = JSON.stringify(filterObj);
+                $('#list').datagrid('load', { filter: JSON.stringify(filterObj) });
+            }
+                //$('#list').datagrid({ url: actionURL + "?action=GetByname&nm=" + num + "&rq=class" });
+            // $('#list').datagrid('clearSelections').datagrid('reload', { filter: ' ' });
+        }
+
+    });
+});
+
+function createParam(action, keyid) {
+    var o = {};
+    o.action = action;
+    o.keyid = keyid;
+    return "json=" + JSON.stringify(o);
+}
+
+var grid = {
+    bind: function (winSize) {
+        $('#list').datagrid({
+            url: actionURL + "?"+createParam("GetTClistByClass"),
+
+            toolbar: '#toolbar',
+            title: "我担任班主任班级学生所有课程缺勤明细情况表",
+            iconCls: 'icon icon-list',
+            width: winSize.width,
+            height: winSize.height,
+            nowrap: false, //折行
+            rownumbers: true, //行号
+            striped: true, //隔行变色
+            idField: 'KeyId',//主键
+            singleSelect: true, //单选
+            frozenColumns: [[]],
+            columns: [[
+
+               
+           { title: '课程', field: 'CourseName', width: 100 },
+
+            { title: '授[代]课教师', field: 'TrueName', width: 80 },
+
+            { title: '教学周', field: 'TeachWeeks', width: 40 },
+            {
+                title: '日期', field: 'TeachDate', width: 80,
+                formatter: function (val) {
+                    if (val == "" || val == null)
+                    { return "" }
+                    else
+                    { return val.substr(0, 10); }
+                }
+            },
+            { title: '星期', field: 'TeachDay', width: 50 },
+            { title: '节次', field: 'TeachTime', width: 40 },
+               { title: '班级名称', field: 'ClassName', width: 100 },
+		    { title: '学号', field: 'StudentNumber', width: 100 },
+		    { title: '姓名', field: 'Name', width: 60 },
+		    { title: '性别', field: 'Gender', width: 40 },
+            {
+                title: '迟到', field: 'CheckCD', width: 40,
+                formatter: function (val) {
+                    if (val == '1') {
+                        return "x";
+                    }
+                    else {
+                        return "";
+                    }
+                }
+            },
+            {
+                title: '早退', field: 'CheckZT', width: 40,
+                formatter: function (val) {
+                    if (val == '1') {
+                        return "x";
+                    }
+                    else {
+                        return "";
+                    }
+                }
+            },
+		    {
+		        title: '旷课', field: 'CheckKK', width: 50,
+		        formatter: function (val) {
+		            if (val >= '1') {
+		                return "x["+val+"]";
+		            }
+		            else {
+		                return "";
+		            }
+		        }
+		    },
+            {
+                title: '请假', field: 'CheckBJ', width: 120,
+                formatter: function (val) {
+                    if (val == '' || val == '0') {
+                        return "";
+                    }
+                    else {
+                        return val;
+                    }
+                }
+            },
+            {
+                title: '消极表现', field: 'CheckBX', width: 120,
+                formatter: function (val) {
+                    if (val == '' || val == '0') {
+                        return "";
+                    }
+                    else {
+                        return val;
+                    }
+                }
+            },
+            { title: '本人电话', field: 'Phone', width: 140 },
+             { title: '所在宿舍', field: 'Hostel', width: 140 },
+              { title: '父亲', field: 'Father', width: 80 },
+              { title: '母亲', field: 'Mother', width: 80 },
+             { title: '联系方式', field: 'HomePhone', width: 120 },
+           // { title: '班主任', field: 'Expr1', width: 120 },
+            ]],
+            pagination: true,
+            pageSize: PAGESIZE,
+            pageList: [20, 60, 100]
+        });
+    },
+    getSelectedRow: function () {
+        return $('#list').datagrid('getSelected');
+    },
+    reload: function () {
+        $('#list').datagrid('clearSelections').datagrid('reload', { filter: '' });
+    }
+};

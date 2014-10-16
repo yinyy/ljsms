@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using ${opts.namespace}.Dal;
+using ${opts.namespace}.Model;
+using DB.Common.Provider;
+
+namespace ${opts.namespace}.Bll
+{
+    public class ${opts.bllname}
+    {
+        public static ${opts.bllname} Instance
+        {
+            get { return SingletonProvider<${opts.bllname}>.Instance; }
+        }
+
+        public int Add(${opts.modelname} model)
+        {
+            return ${opts.dalname}.Instance.Insert(model);
+        }
+
+        public int Update(${opts.modelname} model)
+        {
+            return ${opts.dalname}.Instance.Update(model);
+        }
+
+        public int Delete(int keyid)
+        {
+            return ${opts.dalname}.Instance.Delete(keyid);
+        }
+
+        public string GetJson(int pageindex, int pagesize, string filterJson, string sort = "Keyid", string order = "asc")
+        {
+            return ${opts.dalname}.Instance.GetJson(pageindex, pagesize, filterJson, sort, order);
+        }
+    }
+}

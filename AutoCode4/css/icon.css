@@ -1,0 +1,46 @@
+﻿.icon{padding-left:18px;display:inline-block; line-height:18px;}
+.icon32{padding-left:34px;display:inline-block; line-height:34px;}
+.icon-add{background:url('icon/add.png')  no-repeat !important;}
+.icon-edit{background:url('icon/edit.gif') no-repeat }
+.icon-clear{background:url('icon/edit-clear.png') no-repeat }
+.icon-save{background:url('icon/disk.png') no-repeat }
+.icon-delete{background:url('icon/deletered.png') no-repeat}
+.icon-delete0{background:url('icon/delete.gif') no-repeat}
+.icon-delete1{background:url('icon/delete.png') no-repeat}
+.icon-delete2{background:url('icon/cross_octagon.png') no-repeat}
+.icon-delete3{background:url('icon/delete3.png') no-repeat}
+.icon-database{background:url('icon/database.png') no-repeat;}
+.icon-table{background:url('icon/table.png') no-repeat;}
+.icon-download{background:url('icon/download.png') no-repeat;}
+.icon-key{background:url('icon/key.png') no-repeat}
+.icon-search{background:url('icon/search.png') no-repeat}
+.icon-reload{background:url('icon/refresh.png') no-repeat}
+.icon-ok{background:url('icon/ok.png') no-repeat}
+.icon-cancel{background:url('icon/cancel.png') no-repeat}
+.icon-export{background:url('icon/export.png') no-repeat}
+.icon-audit{ background:url('icon/tick_shield.png') no-repeat;}
+.icon-expand{ background:url('/images/coll2.gif') no-repeat;}
+.icon-collapse{ background:url('/images/coll3.gif') no-repeat;}
+.icon-set1{background:url('icon/advancedsettings.png') no-repeat;}
+.icon-set2{background:url('icon/advancedsettings2.png') no-repeat;}
+.icon-list{background:url('icon/application_view_list.png') no-repeat;}
+.icon-sysset{ background:url('icon/sys.png') no-repeat;}
+.icon-nav{background:url('icon/application_side_tree.png') no-repeat;}
+.icon-users{background:url('icon/users.png') no-repeat;}
+.icon-group{background:url('icon/user_group.png') no-repeat;}
+.icon-group32{background:url('icon/group32.png') no-repeat;}
+.icon-group-add{background:url('icon/group_add.png') no-repeat;}
+.icon-group-delete{background:url('icon/group_delete.png') no-repeat;}
+
+.icon-user{background:url('icon/user.png') no-repeat;}
+.icon-user32{background:url('icon/personal.png') no-repeat;}
+.icon-boss{background:url('icon/user_business_boss.png') no-repeat;}
+.icon-stop{background:url('icon/stop.png') no-repeat;}
+.icon-error{background:url('icon/error.png') no-repeat;}
+.icon-org{background:url('icon/organization.png') no-repeat;}
+
+.icon-html{background:url('icon/html.png') no-repeat;}
+.icon-js{background:url('icon/js.png') no-repeat;}
+.icon-ashx{background:url('icon/ashx.png') no-repeat;}
+.icon-c{background:url('icon/csharp.png') no-repeat;}
+.icon-start{background:url('icon/start.png') no-repeat;}

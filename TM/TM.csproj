@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C812B848-2B89-45FB-B991-DCC06DA9A145}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TM</RootNamespace>
+    <AssemblyName>TM</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\XiuCai.BPM.Admin\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="bll\TMArticleModelBll.cs" />
+    <Compile Include="bll\TMBreakRulesBll.cs" />
+    <Compile Include="bll\TMChuFaDetailsBll.cs" />
+    <Compile Include="bll\TMClassInfoBll.cs" />
+    <Compile Include="bll\TMCourseBll.cs" />
+    <Compile Include="bll\TMDetermineBll.cs" />
+    <Compile Include="bll\TMDetermineFillBll.cs" />
+    <Compile Include="bll\TMDetermineTeachersBll.cs" />
+    <Compile Include="bll\TMInvestigateBll.cs" />
+    <Compile Include="bll\TMInvestigateFillBll.cs" />
+    <Compile Include="bll\TMInvestigateItemBll.cs" />
+    <Compile Include="bll\TMInvestigateItemChoiceBll.cs" />
+    <Compile Include="bll\TMStudentLeaveBll.cs" />
+    <Compile Include="bll\TMStudentsBll.cs" />
+    <Compile Include="bll\TMTeachCheckBll.cs" />
+    <Compile Include="bll\TMTeachCheckDetailsBll.cs" />
+    <Compile Include="bll\TMTeachCourseBll.cs" />
+    <Compile Include="bll\TMTeachCourseDetailBll.cs" />
+    <Compile Include="bll\TMTeachInspectBll.cs" />
+    <Compile Include="bll\TMTermBll.cs" />
+    <Compile Include="bll\TMVClassStudentsBll.cs" />
+    <Compile Include="bll\TMVirtualClassBll.cs" />
+    <Compile Include="bll\TMWarningIndexBll.cs" />
+    <Compile Include="bll\TMWarningRecordsBll.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="dal\TMArticleDal.cs" />
+    <Compile Include="dal\TMBreakRulesDal.cs" />
+    <Compile Include="dal\TMChuFaDetailsDal.cs" />
+    <Compile Include="dal\TMClassInfoDal.cs" />
+    <Compile Include="dal\TMCourseDal.cs" />
+    <Compile Include="dal\TMDetermineDal.cs" />
+    <Compile Include="dal\TMDetermineFillDal.cs" />
+    <Compile Include="dal\TMDetermineTeachersDal.cs" />
+    <Compile Include="dal\TMInvestigateDal.cs" />
+    <Compile Include="dal\TMInvestigateFillDal.cs" />
+    <Compile Include="dal\TMInvestigateItemChoiceDal.cs" />
+    <Compile Include="dal\TMInvestigateItemDal.cs" />
+    <Compile Include="dal\TMStudentLeaveDal.cs" />
+    <Compile Include="dal\TMStudentsDal.cs" />
+    <Compile Include="dal\TMTeachCheckDal.cs" />
+    <Compile Include="dal\TMTeachCheckDetailsDal.cs" />
+    <Compile Include="dal\TMTeachCourseDal.cs" />
+    <Compile Include="dal\TMTeachCourseDetailDal.cs" />
+    <Compile Include="dal\TMTeachInspectDal.cs" />
+    <Compile Include="dal\TMTermDal.cs" />
+    <Compile Include="dal\TMVClassStudentsDal.cs" />
+    <Compile Include="dal\TMVirtualClassDal.cs" />
+    <Compile Include="dal\TMWarningIndexDal.cs" />
+    <Compile Include="dal\TMWarningRecordsDal.cs" />
+    <Compile Include="model\TMArticle.cs" />
+    <Compile Include="model\TMBreakRulesModel.cs" />
+    <Compile Include="model\TMChuFaDetailsModel.cs" />
+    <Compile Include="model\TMClassInfoModel.cs" />
+    <Compile Include="model\TMCourseModel.cs" />
+    <Compile Include="model\TMDetermineFillModel.cs" />
+    <Compile Include="model\TMDetermineModel.cs" />
+    <Compile Include="model\TMDetermineTeachersModel.cs" />
+    <Compile Include="model\TMInvestigateFill2Model.cs" />
+    <Compile Include="model\TMInvestigateFillModel.cs" />
+    <Compile Include="model\TMInvestigateItemChoiceModel.cs" />
+    <Compile Include="model\TMInvestigateItemModel.cs" />
+    <Compile Include="model\TMInvestigateModel.cs" />
+    <Compile Include="model\TMStudentLeaveModel.cs" />
+    <Compile Include="model\TMStudentsModel.cs" />
+    <Compile Include="model\TMTeachCheckDetailsModel.cs" />
+    <Compile Include="model\TMTeachCheckModel.cs" />
+    <Compile Include="model\TMTeachCourseDetailModel.cs" />
+    <Compile Include="model\TMTeachCourseModel.cs" />
+    <Compile Include="model\TMTeachInspectModel.cs" />
+    <Compile Include="model\TMTermModel.cs" />
+    <Compile Include="model\TMVClassStudentsModel.cs" />
+    <Compile Include="model\TMVirtualClassModel.cs" />
+    <Compile Include="model\TMWarningIndexModel.cs" />
+    <Compile Include="model\TMWarningRecordsModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Toolkit.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Newtonsoft.Json.dll" />
+    <Content Include="NVelocity.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\DB.Common.csproj">
+      <Project>{a5c9956d-fc44-4886-bee8-f833cfe1a1db}</Project>
+      <Name>DB.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DB.BPM.Core\DB.BPM.Core.csproj">
+      <Project>{c391753c-ac61-4831-99c6-b82d7d52ddd9}</Project>
+      <Name>DB.BPM.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

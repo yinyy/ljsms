@@ -1,0 +1,5 @@
+﻿<form id="uiform"><table class="grid">
+#foreach($item in $code.getcolumns())
+<tr><td>${opts.GetCName($item.name)}：</td><td><input type="text" id="txt_${item.name}" name="${item.name}" class="txt03" /></td></tr>
+#end
+</table></form>

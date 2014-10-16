@@ -1,0 +1,1 @@
+<%@ WebHandler Language="C#" CodeBehind="TMWarningIndexHandler.ashx.cs" Class="TM.WEB.TM.ashx.TMWarningIndexHandler" %>

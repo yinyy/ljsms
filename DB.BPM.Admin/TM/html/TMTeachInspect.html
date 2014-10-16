@@ -1,0 +1,103 @@
+<form id="uiform"><table class="grid">
+    <tr><td style="width:40px">教室：</td><td style="width:100px"><input type="text"  id="txt_InspectRoomID" name="InspectRoomID" class="easyui-combotree" /></td>
+         <td style="width:45px">日期：</td><td  style="width:100px"><input type="text" id="txt_InspectDate" name="InspectDate" class="easyui-datebox"  /></td>
+        <td style="width:40px">周次：</td><td style="width:100px">
+        <select id="txt_InspectWeeks" name="InspectWeeks" class="easyui-combobox"  style="width:100px" >
+         <option value="1">第1周</option>
+    <option value="2">第2周</option> 
+    <option value="3">第3周</option>
+    <option value="4">第4周</option> 
+    <option value="5">第5周</option>
+    <option value="6">第6周</option> 
+    <option value="7">第7周</option>
+    <option value="8">第8周</option>
+    <option value="9">第9周</option>
+    <option value="10">第10周</option> 
+    <option value="11">第11周</option>
+    <option value="12">第12周</option> 
+    <option value="13">第13周</option>
+    <option value="14">第14周</option> 
+    <option value="15">第15周</option>
+    <option value="16">第16周</option>
+    <option value="17">第17周</option>    
+    <option value="18">第18周</option>
+    <option value="19">第19周</option> 
+    <option value="20">第20周</option>
+    <option value="21">第21周</option>
+            </select></td>
+       </tr>
+    <tr>
+        <td>节次：</td><td>
+            <select id="txt_InspectTime" name="InspectTime" style="width:100px"  class="easyui-combobox"  >
+             <option value="1-2">1-2</option>    
+    <option value="3-4">3-4</option>
+    <option value="5-6">5-6</option> 
+    <option value="7-8">7-8</option>
+    <option value="9-10">9-10</option>
+             </select>
+                    </td>
+        
+
+   
+    <td>星期：</td><td>
+        <select id="txt_InspectDay" name="InspectDay"  class="easyui-combobox" style="width:100px" >
+              <option value="星期一">星期一</option>
+              <option value="星期二">星期二</option>
+              <option value="星期三">星期三</option>    
+              <option value="星期四">星期四</option>
+              <option value="星期五">星期五</option> 
+              <option value="星期六">星期六</option>
+              <option value="星期日">星期日</option>
+             </select>
+                    </td>
+        <td colspan="2"><a id="A1" href="#" plain="true" class="easyui-linkbutton" title="查找授课">查找授课教师信息>>></a></td>
+    </tr>
+    <tr>
+        <td>课程：</td><td ><input type="text"id="txt_TeachCourseDetailID" name="TeachCourseDetailID" class="txt03" disabled="disabled" /></td>
+            <td>教师：</td><td><input type="text" id="txt_TrueName" name="TeacherID"  class="txt03" disabled="disabled" /></td>
+        
+        <td>班级：</td><td><input type="text" id="txt_Vclass" name="VClassID"  class="txt03" disabled="disabled" /></td>
+    </tr>
+    <tr><td>迟到：</td><td><select id="txt_InspectCD" name="InspectCD"  class="easyui-combobox" >
+        <option value="0">  </option>
+        <option value="迟到5分钟以内">迟到5分钟以内</option>
+        <option value="迟到5-10分钟">迟到5-10分钟</option>
+        <option value="迟到10分钟以上">迟到10分钟以上</option>
+                          </select>
+                    </td><td>早退：</td><td>
+                        <select id="txt_InspectZT" name="InspectZT"   class="easyui-combobox" >
+        <option value="0">  </option>
+        <option value="早退5分钟以内">早退5分钟以内</option>
+        <option value="早退5-10分钟">早退5-10分钟</option>
+        <option value="早退10分钟以上">早退10分钟以上</option>
+                          </select>
+                                     </td>
+<td>旷课：</td><td>
+    <select  id="txt_InspectKK" name="InspectKK"   class="easyui-combobox" >
+        <option value="0">  </option>
+        <option value="学生到，教师未到">学生到，教师未到</option>
+        <option value="学生未到，教师未到">学生未到，教师未到</option>
+       
+                          </select>
+            </td></tr>
+    <tr><td>调课：</td><td colspan="5"><input type="text" id="txt_InspectChange" name="InspectChange" style="width:590px" class="txt03" /></td></tr>
+<tr>
+     <td>督导<br />记录：</td><td  colspan="5"><textarea style="height:100px;width:590px" id="txt_InspectLog" name="InspectLog"></textarea>
+     </td></tr>
+    <tr><td>督导<br />评语：</td><td  colspan="5"> 
+        <select id="txt_InspectAppraise" name="InspectAppraise" style="width:590px"  class="easyui-combobox">
+              <option value="教师授课状态良好，学生精力集中，课堂气氛好">教师授课状态良好，学生精力集中，课堂气氛好</option>
+              <option value="教师授课表现一般，学生精力不集中，气氛差">教师授课表现一般，学生精力不集中，气氛差</option>
+              <option value="教师授课表现差，学生违反纪律现象突出">教师授课表现差，学生违反纪律现象突出</option>    
+              <option value="教师违反上课纪律，有迟到、早退现象">教师违反上课纪律，有迟到、早退现象</option>
+              <option value="教师未在规定时间和教室授课">教师未在规定时间和教室授课</option> 
+            
+             </select>
+     </td></tr>
+
+
+
+<tr><td>反馈<br />教师<br />信息：</td><td colspan="5"><textarea style="height:50px;width:590px" id="txt_Remark" name="Remark"  class="txt03" ></textarea></td></tr>
+
+
+</table></form>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>Jquery插件：使用"autoresize"插件自动改变textarea大小--ffasp</title> 
+<style type="text/css">
+body {font:12px/1.4 Verdana,Arial; background:#eee; height:100%; margin:25px 0; padding:0}
+h1 {font:24px Georgia,Verdana; margin:0}
+h2 {font-size:12px; font-weight:normal; font-style:italic; margin:10px 0 20px}
+p {margin:5px 0;font-size:13px; line-height:1.5em;text-indent:2em}
+ul {margin:0; padding-left:20px}
+ 
+#testdiv {width:600px; height:800px;margin:0 auto; border:1px solid #ccc; padding:20px 25px; background:#fff}
+ 
+#tinybox {position:absolute; display:none; padding:10px; background:#fff url(images/preload.gif) no-repeat 50% 50%; border:10px solid #e3e3e3; z-index:2000}
+#tinymask {position:absolute; display:none; top:0; left:0; height:100%; width:100%; background:#000; z-index:1500}
+#tinycontent {background:#fff}
+ 
+.button {font:14px Georgia,Verdana; margin-bottom:10px; padding:8px 10px 9px; border:1px solid #ccc; background:#eee; cursor:pointer}
+.button:hover {border:1px solid #bbb; background:#e3e3e3}
+ 
+ul{list-style-type: none;}
+ul li{float:left;padding:5px;}
+#ad{ text-align:center; margin:0 auto;}
+</style>
+<script type="text/javascript" src="jquery-1.4.2.min.js"></script> 
+<script type="text/javascript" src="autoresize.min.js"></script> 
+<script type="text/javascript"> 
+$(function(){
+	$('textarea#comment').autoResize({
+    // On resize:
+    onResize : function() {
+        $(this).css({opacity:0.8});
+    },
+    // After resize:
+    animateCallback : function() {
+        $(this).css({opacity:1});
+    },
+    // Quite slow animation:
+    animateDuration : 300,
+    // More extra space:
+    extraSpace : 30,
+	limit: 150
+});
+})
+</script> 
+</head> 
+<body> 
+<div id="ad"><script src="/adjs/plugs.js"></script></div>
+<div id="testdiv"> 
+<h1>使用"autoresize"插件自动改变textarea大小 - CSS9.NET</h1> 
+ 
+	<h2>文章地址：<a href="http://www.ffasp.com/content.asp?newsid=1718" target="_blank">http://www.ffasp.com/content.asp?newsid=1718</a> &nbsp;关注Web前端开发 - <a href="http://ffasp.com">ffasp.com</a></h2> 
+	<p>文本框textarea是在网站中经常用到到多行文本输入标签，例如本文下面的留言输入框。一般情况下，我们会通过指定textarea的rows和cols属性来控制大小。当在textarea输入较多文本超过预设行数时，就会出现侧边滚动条。这样难免会将部分文本遮挡，当想回顾已输入内容时，还要去拖动滚动条，来来回回，煞是不爽。如果可以让textarea根据用户输入的文本内容自动扩展，就可以解决这个问题了，有助于改善用户体验。"autoresize"这款jquery插件就是用来解决这个问题的。<b>下面看效果:</b></p> 
+	<p><br />
+	  <br /> 
+	  
+	  <textarea id="comment" style="width: 400px; padding: 5px; height: 50px; display: block; font-size:1.2em;">在这里输入内容，当内容超出文本框高度时，文本框会自动扩展</textarea>
+  </p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p><em>javascript代码</em></p>
+	<div>
+	  <div>
+	    <pre>$(function(){<br />	$('textarea#test-comment').autoResize({<br />           // 文本框改变大小时触发事件，这里改变了文本框透明度<br />           onResize : function() {<br />                $(this).css({opacity:0.8});<br />           },<br />          // 动画效果回调触发事件，这里改变了文本框透明度<br />          animateCallback : function() {<br />               $(this).css({opacity:1});<br />          },<br />         // 动画效果持续时间（ms），默认150<br />        animateDuration : 300,<br />        // 每次改变大小时，扩展（缩小）的高度（像素），默认20<br />        extraSpace : 30,<br />        //当文本框高度大于多少时，不再扩展，出现滚动条，默认1000<br />	limit: 200<br />    });<br />})</pre>
+      </div>
+  </div>
+    <p>&nbsp; </p>
+</div>
+<script src="/stat.js"></script>
+</body> 
+</html>

@@ -1,0 +1,1 @@
+<%@ WebHandler Language="C#" CodeBehind="TMTermHandler.ashx.cs" Class="TM.Web.TM.ashx.TMTermHandler" %>

@@ -1,0 +1,1 @@
+<%@ WebHandler Language="C#" CodeBehind="TMTeachInspectHandler.ashx.cs" Class="TM.WEB.TM.ashx.TMTeachInspectHandler" %>

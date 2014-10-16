@@ -1,0 +1,79 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.SessionState;
+using ${code.namespace}.Model;
+using ${code.namespace}.Bll;
+
+using Omu.ValueInjecter;
+using DB.BPM.Core;
+using DB.BPM.Core.Bll;
+using DB.Common;
+using DB.Common.Data;
+using DB.Common.Data.Filter;
+using System.Data;
+
+namespace ${opts.webnamespace}.${opts.floder}.ashx
+{
+    /// <summary>
+    /// dbHandler 的摘要说明
+    /// </summary>
+    public class ${code.HandlerName} : IHttpHandler,IRequiresSessionState
+    {
+        public void ProcessRequest(HttpContext context)
+        {
+            context.Response.ContentType = "text/plain";
+
+            UserBll.Instance.CheckUserOnlingState();
+
+            //int k;
+            var json = HttpContext.Current.Request["json"];
+            var rpm = new RequestParamModel<${opts.modelname}>(context) { CurrentContext = context };
+            if (!string.IsNullOrEmpty(json))
+            {
+                rpm = JSONhelper.ConvertToObject<RequestParamModel<${opts.modelname}>>(json);
+                rpm.CurrentContext = context;
+            }
+
+            switch (rpm.Action)
+            {
+                case "add":
+                    context.Response.Write(${opts.bllname}.Instance.Add(rpm.Entity));
+                    break;
+                case "edit":
+                    ${opts.modelname} d = new ${opts.modelname}();
+                    d.InjectFrom(rpm.Entity);
+                    d.KeyId = rpm.KeyId;
+                    context.Response.Write(${opts.bllname}.Instance.Update(d));
+                    break;
+                case "delete":
+                    context.Response.Write(${opts.bllname}.Instance.Delete(rpm.KeyId));
+                    break;
+                default:
+		     ProcCustomPage pcp = new ProcCustomPage("V_${opts.tablename}")
+                    {
+                        PageIndex = rpm.Pageindex,
+                        PageSize = rpm.Pagesize,
+                        WhereString = FilterTranslator.ToSql(rpm.Filter),
+                        OrderFields = rpm.Sort + " " + rpm.Order
+                    };
+
+                    int count = 0;
+                    DataTable table = DbUtils.GetPageWithSp(pcp, out count);
+
+                    context.Response.Write(JSONhelper.FormatJSONForEasyuiDataGrid(count, table));
+
+                    break;
+            }
+        }
+
+        public bool IsReusable
+        {
+            get
+            {
+                return false;
+            }
+        }
+    }
+}

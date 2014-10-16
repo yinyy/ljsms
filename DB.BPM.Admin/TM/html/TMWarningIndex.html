@@ -1,0 +1,38 @@
+<form id="uiform"><table class="grid">
+<tr><td>预警项目：</td><td><input type="text" id="txt_WarningItemID" name="WarningItemID" class="easyui-combobox"  data-options="required:true" /></td></tr>
+<tr><td>预警下限：</td><td><input type="text" id="txt_WarningIndexLow" name="WarningIndexLow" class="easyui-numberbox" data-options="required:true" /></td></tr>
+<tr><td>预警上限：</td><td><input type="text" id="txt_WarningIndexHigh" name="WarningIndexHigh" class="easyui-numberbox"   data-options="required:true" maxlength="4" /></td></tr>
+<tr><td>处理规定：</td><td><input type="text" id="txt_WarningProcess" name="WarningProcess" class="txt03" /></td></tr>
+<tr><td>预警等级标示：</td><td>
+    
+     <select id="txt_WarningColorStyle" name="WarningColorStyle"  class="easyui-combobox">
+    <option value="font-weight:bold;">文字加粗</option>
+    <option value="color:blue;font-weight:bold;">文字蓝色加粗</option>   
+        <option value="background-color:blue;color:white;font-weight:bold;">背景蓝色文字白色加粗</option>  
+         <option value="background-color:yellow;color:black;font-weight:bold;">背景黄色文字黑色加粗</option>
+    <option value="background-color:orange;color:black;font-weight:bold;">背景橙色文字黑色加粗</option>   
+        <option value="background-color:red;color:yellow;font-weight:bold;">背景红色文字黄色加粗</option>  
+              
+</select>      
+
+
+                    </td></tr>
+<tr><td>分值：</td><td><input type="text" id="txt_WarningScore" name="WarningScore" class="txt03" /></td></tr>
+<tr><td>指标启用与否：</td><td>    
+     <select id="txt_WarningEnabled" name="WarningEnabled"  class="easyui-combobox">
+    <option value="启用">启用</option>
+    <option value="停用">停用</option>        
+</select>          </td></tr>
+
+<tr><td>指标统计期间：</td><td>
+    
+     <select id="txt_WarningPeriod" name="WarningPeriod"  class="easyui-combobox">
+    <option value="当前学期">当前学期</option>
+    <option value="当前学年">当前学年</option>   
+        <option value="在校期间">在校期间</option>       
+</select>      
+
+
+                    </td></tr>
+  <tr><td>备注信息：</td><td><input type="text" id="txt_Remark" name="Remark" class="txt03" /></td></tr>
+</table></form>

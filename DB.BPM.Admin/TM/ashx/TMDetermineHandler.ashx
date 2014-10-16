@@ -1,0 +1,1 @@
+<%@ WebHandler Language="C#" CodeBehind="TMDetermineHandler.ashx.cs" Class="DB.BPM.Admin.TM.ashx.TMDetermineHandler" %>
