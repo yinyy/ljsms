@@ -3344,6 +3344,14 @@
     <Content Include="Student\js\login.js" />
     <Content Include="Student\js\investigateteacher.js" />
     <Content Include="Student\login.html" />
+    <Content Include="testfile\html\testcontentadd.html" />
+    <Content Include="testfile\js\testcontentadd.js" />
+    <Content Include="testfile\testcontentadd.aspx" />
+    <Content Include="testfile\testfile.aspx" />
+    <Content Include="testfile\testfile.js" />
+    <Content Include="test\ashx\InvestigateHandler.ashx" />
+    <Content Include="test\Investigate.aspx" />
+    <Content Include="test\js\Investigate.js" />
     <Content Include="theme\bootstrap\style.css" />
     <Content Include="theme\metro\style.css" />
     <Content Include="TM\Desktop.aspx" />
@@ -3457,6 +3465,11 @@
     <Content Include="TM\TMVirtualClass.aspx" />
     <Content Include="TM\TMWarningIndex.aspx" />
     <Content Include="TM\TMWarningRecords.aspx" />
+    <Content Include="upfile\day_140818\201408180848065003.png" />
+    <Content Include="upfile\day_140818\201408180852442960.jpg" />
+    <Content Include="upfile\day_140818\201408180908326490.swf" />
+    <Content Include="upfile\day_140818\201408180914263167.avi" />
+    <Content Include="upfile\day_140818\20140818095413609.jpg" />
     <Content Include="welcome.html" />
     <Content Include="combres.readme" />
     <Content Include="ashx\GlobalHandler.ashx" />
@@ -3688,6 +3701,19 @@
     <Content Include="Student\ashx\LoginHandler.ashx" />
     <Content Include="TM\ashx\TMDetermineHandler.ashx" />
     <Content Include="TM\ashx\TMDetermineFillHandler.ashx" />
+    <Content Include="testfile\ashx\testcontentadd.ashx" />
+    <Content Include="testfile\testfile.ashx" />
+    <Content Include="testfile\upfile\人事处文件.rar" />
+    <Content Include="testfile\upfile\优秀教师附件3【电信-邓宾】.docx" />
+    <Content Include="upfile\1408350775970.rar" />
+    <Content Include="upfile\1408350837386.doc" />
+    <Content Include="upfile\370502197411127213邓宾.xls" />
+    <Content Include="upfile\day_140818\201408180918511847.rar" />
+    <Content Include="upfile\人事处文件.rar" />
+    <Content Include="upfile\优秀教师附件3【电信-邓宾】.docx" />
+    <Content Include="upfile\第五届师德标兵、优秀教师评选方案 %28定稿%29.doc" />
+    <Content Include="upfile\附件1专业技术人员个人基本信息采集表.xls" />
+    <Content Include="upfile\高校优秀教师先进事迹材料.docx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ashx\ExportExcel.aspx.cs">
@@ -3840,6 +3866,33 @@
     </Compile>
     <Compile Include="sys\Users.aspx.designer.cs">
       <DependentUpon>Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testfile\ashx\testcontentadd.ashx.cs">
+      <DependentUpon>testcontentadd.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="testfile\testcontentadd.aspx.cs">
+      <DependentUpon>testcontentadd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testfile\testcontentadd.aspx.designer.cs">
+      <DependentUpon>testcontentadd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testfile\testfile.ashx.cs">
+      <DependentUpon>testfile.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="testfile\testfile.aspx.cs">
+      <DependentUpon>testfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testfile\testfile.aspx.designer.cs">
+      <DependentUpon>testfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test\ashx\InvestigateHandler.ashx.cs">
+      <DependentUpon>InvestigateHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="test\Investigate.aspx.cs">
+      <DependentUpon>Investigate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test\Investigate.aspx.designer.cs">
+      <DependentUpon>Investigate.aspx</DependentUpon>
     </Compile>
     <Compile Include="TM\ashx\TMBreakRulesHandler.ashx.cs">
       <DependentUpon>TMBreakRulesHandler.ashx</DependentUpon>
@@ -4226,6 +4279,7 @@
     <Folder Include="html\" />
     <Folder Include="js\" />
     <Folder Include="Student\html\" />
+    <Folder Include="test\html\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="scripts\jQgrid\gray\images\MSSCCPRJ.SCC" />

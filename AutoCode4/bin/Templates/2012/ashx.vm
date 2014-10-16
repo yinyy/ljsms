@@ -1,0 +1,125 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.SessionState;
+using ${code.namespace}.Core.Model;
+using ${code.namespace}.Core.Dal;
+
+namespace ${code.namespace}.Admin.${opts.floder}.ashx
+{
+    /// <summary>
+    /// dbHandler 的摘要说明
+    /// </summary>
+    public class ${code.HandlerName} : IHttpHandler,IRequiresSessionState
+    {
+        public void ProcessRequest(HttpContext context)
+        {
+            context.Response.Buffer = true;
+            context.Response.ExpiresAbsolute = DateTime.Now.AddDays(-1);
+            context.Response.AddHeader("pragma", "no-cache");
+            context.Response.AddHeader("cache-control", "");
+            context.Response.CacheControl = "no-cache";
+            context.Response.ContentType = "text/plain";
+
+            if (SysVisitor.Current.IsGuest)
+            {
+                context.Response.Write("-1");
+                context.Response.End();
+            }
+            switch(action)
+            {
+                case "edit":
+                    update();
+                    break;
+                case "del":
+                    delete();
+                    break;
+                default:
+                    string where = "";
+                    string filters = Common.PublicMethod.GetString(getObj("filters"));
+                    if (filters != "")
+                    {
+                        string grouptype;
+                        IList<SearchFilter> list = SearchFilter.GetSearchList(filters, out grouptype);
+                        where = SearchFilter.ToSql(list,grouptype);
+                    }
+                    string sortorder = sort +" " + order;
+                    int _pageindex = 1;
+                    int _pagesize = 20;
+                    if (pageindex > 0)_pageindex = pageindex;
+                    if (pagesize > 0)_pagesize = pagesize;
+                    string json = ${code.DalName}.Current.GetJSONdata(_pageindex, _pagesize,sortorder, where);
+                    context.Response.Write(json);
+                    break;
+            }
+        }
+
+        private void update()
+        {
+            ${opts.modelname} model = new ${opts.modelname}();
+            
+            #foreach($item in $code.GetColumns())model.${item.name} = ${item.name};
+            #end
+            
+            if(${code.keyColumn.name} == 0) 
+            {
+                int i = ${opts.dalname}.Current.Add(model);
+                if (i > 0)
+                    HttpContext.Current.Response.Write("1"); //添加成功！
+                else
+                    HttpContext.Current.Response.Write("0"); //添加失败！
+            }
+            else
+            {
+                model.${code.keyColumn.name} = ${code.keyColumn.name};
+                int j = ${opts.dalname}.Current.Update(model);
+                if (j == 1)
+                    HttpContext.Current.Response.Write("1"); //修改成功！
+                else
+                    HttpContext.Current.Response.Write("0"); //修改失败！
+            }
+        }
+        
+        private void delete()
+        {
+            int i = ${opts.dalname}.Current.DeleteMore(ids);
+            if (i > 0)
+                HttpContext.Current.Response.Write("1"); //删除成功！
+            else
+                HttpContext.Current.Response.Write("0"); //删除失败！
+        }
+        
+        //每页的记录数
+        private int pagesize { get { return Common.PublicMethod.GetInt(getObj("rows")); } }
+        //当前请求第几页
+        private int pageindex { get { return Common.PublicMethod.GetInt(getObj("page")); } }
+        //排序字段(for jqgrid)
+        public string sort { get { return Common.PublicMethod.GetString(getObj("sidx")); } }
+        //排序方式(for jqgrid)
+        public string order { get { return Common.PublicMethod.GetString(getObj("sord")); } }
+        
+        //排序字段(easyui datagrid)
+        //public string sortName { get { return Common.PublicMethod.GetString(getObj("sort")); } }
+        //排序方式(easyui datagrid)
+        //public string sortType { get { return Common.PublicMethod.GetString(getObj("order")); } }
+
+
+        private object getObj(string key) { return Common.StringHelper.GetRequestObject(key); }
+        private string action { get { return Common.PublicMethod.GetString(getObj("action")); } }
+        #region 字段属性
+	private string ids{get{return Common.PublicMethod.GetString(getObj("ids"));}}
+        #foreach($item in ${code.getcolumns()})
+    private ${code.SqlDataTypeTo($item.datatype)} ${item.name} {get {return Common.PublicMethod.${code.DataTypeMethod($item.datatype)}(getObj("${item.name}"));}}
+        #end
+  #endregion
+
+        public bool IsReusable
+        {
+            get
+            {
+                return false;
+            }
+        }
+    }
+}
