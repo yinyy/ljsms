@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bll\TMDocumentBll.cs" />
     <Compile Include="bll\TMArticleModelBll.cs" />
     <Compile Include="bll\TMBreakRulesBll.cs" />
     <Compile Include="bll\TMChuFaDetailsBll.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="bll\TMWarningIndexBll.cs" />
     <Compile Include="bll\TMWarningRecordsBll.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="dal\TMDocumentDal.cs" />
     <Compile Include="dal\TMArticleDal.cs" />
     <Compile Include="dal\TMBreakRulesDal.cs" />
     <Compile Include="dal\TMChuFaDetailsDal.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="model\TMVClassStudentsModel.cs" />
     <Compile Include="model\TMVirtualClassModel.cs" />
     <Compile Include="model\TMWarningIndexModel.cs" />
+    <Compile Include="model\TMDocumentModel.cs" />
     <Compile Include="model\TMWarningRecordsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Toolkit.cs" />

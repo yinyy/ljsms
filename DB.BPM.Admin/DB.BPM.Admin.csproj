@@ -3313,6 +3313,73 @@
     <Content Include="scripts\jquery-1.8.2.min.js" />
     <Content Include="scripts\jquery-1.8.3.min.js" />
     <Content Include="scripts\knockout\knockout.mapping-latest.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\ar.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\az.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\bs.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\cs.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\cy.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\da.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\de.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\el.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\en.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\es.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\et.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\fa.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\fi.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\fr.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\he.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\hr.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\hu.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\hy.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\id.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\it.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\ja.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\ka.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\kk.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\km.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\ko.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\lt.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\lv.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\mn.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\ms.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\nl.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\pl.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\pt_BR.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\ro.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\ru.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\sk.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\sq.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\sr.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\sr_RS.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\sv.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\th_TH.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\tr.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\uk_UA.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\zh_CN.js" />
+    <Content Include="scripts\plupload-2.1.2\js\i18n\zh_TW.js" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.plupload.queue\css\jquery.plupload.queue.css" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.plupload.queue\img\backgrounds.gif" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.plupload.queue\img\buttons-disabled.png" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.plupload.queue\img\buttons.png" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.plupload.queue\img\delete.gif" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.plupload.queue\img\done.gif" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.plupload.queue\img\error.gif" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.plupload.queue\img\throbber.gif" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.plupload.queue\img\transp50.png" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.plupload.queue\jquery.plupload.queue.js" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.plupload.queue\jquery.plupload.queue.min.js" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.ui.plupload\css\jquery.ui.plupload.css" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.ui.plupload\img\loading.gif" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.ui.plupload\img\plupload.png" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.ui.plupload\jquery.ui.plupload.js" />
+    <Content Include="scripts\plupload-2.1.2\js\jquery.ui.plupload\jquery.ui.plupload.min.js" />
+    <Content Include="scripts\plupload-2.1.2\js\moxie.js" />
+    <Content Include="scripts\plupload-2.1.2\js\moxie.min.js" />
+    <Content Include="scripts\plupload-2.1.2\js\Moxie.swf" />
+    <Content Include="scripts\plupload-2.1.2\js\Moxie.xap" />
+    <Content Include="scripts\plupload-2.1.2\js\plupload.dev.js" />
+    <Content Include="scripts\plupload-2.1.2\js\plupload.full.min.js" />
+    <Content Include="scripts\plupload-2.1.2\js\plupload.min.js" />
     <Content Include="scripts\qqmsg\gb_tip_layer.png" />
     <Content Include="scripts\qqmsg\gb_tip_layer_ie6.png" />
     <Content Include="scripts\qqmsg\jQuery.qqmsg.js" />
@@ -3344,14 +3411,6 @@
     <Content Include="Student\js\login.js" />
     <Content Include="Student\js\investigateteacher.js" />
     <Content Include="Student\login.html" />
-    <Content Include="testfile\html\testcontentadd.html" />
-    <Content Include="testfile\js\testcontentadd.js" />
-    <Content Include="testfile\testcontentadd.aspx" />
-    <Content Include="testfile\testfile.aspx" />
-    <Content Include="testfile\testfile.js" />
-    <Content Include="test\ashx\InvestigateHandler.ashx" />
-    <Content Include="test\Investigate.aspx" />
-    <Content Include="test\js\Investigate.js" />
     <Content Include="theme\bootstrap\style.css" />
     <Content Include="theme\metro\style.css" />
     <Content Include="TM\Desktop.aspx" />
@@ -3363,6 +3422,7 @@
     <Content Include="TM\html\TMDetermine.html" />
     <Content Include="TM\html\TMDetermineFill.html" />
     <Content Include="TM\html\TMDetermineTeachers.html" />
+    <Content Include="TM\html\TMDocumentTag.html" />
     <Content Include="TM\html\TMInvestigate.html" />
     <Content Include="TM\html\TMInvestigateFill.html" />
     <Content Include="TM\html\TMInvestigateItem.html" />
@@ -3375,6 +3435,7 @@
     <Content Include="TM\html\TMTeachCourse.html" />
     <Content Include="TM\html\TMTeachCourseDetail.html" />
     <Content Include="TM\html\TMTeachInspect.html" />
+    <Content Include="TM\html\TMDocument.html" />
     <Content Include="TM\html\TMTerm.html" />
     <Content Include="TM\html\TMVClassStudents.html" />
     <Content Include="TM\html\TMVirtualClass.html" />
@@ -3384,6 +3445,7 @@
     <Content Include="TM\js\dic.js" />
     <Content Include="TM\js\DetermineOp.js" />
     <Content Include="TM\js\InvestigateOp.js" />
+    <Content Include="TM\js\TMDocument.js" />
     <Content Include="TM\js\TMDetermine.js" />
     <Content Include="TM\js\TMDetermineFill.js" />
     <Content Include="TM\js\TMInvestigatePreview.js" />
@@ -3435,6 +3497,7 @@
     <Content Include="TM\TMDetermine.aspx" />
     <Content Include="TM\ashx\TMDetermineExport.aspx" />
     <Content Include="TM\TMDetermineFill.aspx" />
+    <Content Include="TM\TMDocument.aspx" />
     <Content Include="TM\TMInspectInfo.aspx" />
     <Content Include="TM\TMInvestigate.aspx" />
     <Content Include="TM\TMInvestigateFill.aspx" />
@@ -3465,11 +3528,6 @@
     <Content Include="TM\TMVirtualClass.aspx" />
     <Content Include="TM\TMWarningIndex.aspx" />
     <Content Include="TM\TMWarningRecords.aspx" />
-    <Content Include="upfile\day_140818\201408180848065003.png" />
-    <Content Include="upfile\day_140818\201408180852442960.jpg" />
-    <Content Include="upfile\day_140818\201408180908326490.swf" />
-    <Content Include="upfile\day_140818\201408180914263167.avi" />
-    <Content Include="upfile\day_140818\20140818095413609.jpg" />
     <Content Include="welcome.html" />
     <Content Include="combres.readme" />
     <Content Include="ashx\GlobalHandler.ashx" />
@@ -3701,19 +3759,7 @@
     <Content Include="Student\ashx\LoginHandler.ashx" />
     <Content Include="TM\ashx\TMDetermineHandler.ashx" />
     <Content Include="TM\ashx\TMDetermineFillHandler.ashx" />
-    <Content Include="testfile\ashx\testcontentadd.ashx" />
-    <Content Include="testfile\testfile.ashx" />
-    <Content Include="testfile\upfile\人事处文件.rar" />
-    <Content Include="testfile\upfile\优秀教师附件3【电信-邓宾】.docx" />
-    <Content Include="upfile\1408350775970.rar" />
-    <Content Include="upfile\1408350837386.doc" />
-    <Content Include="upfile\370502197411127213邓宾.xls" />
-    <Content Include="upfile\day_140818\201408180918511847.rar" />
-    <Content Include="upfile\人事处文件.rar" />
-    <Content Include="upfile\优秀教师附件3【电信-邓宾】.docx" />
-    <Content Include="upfile\第五届师德标兵、优秀教师评选方案 %28定稿%29.doc" />
-    <Content Include="upfile\附件1专业技术人员个人基本信息采集表.xls" />
-    <Content Include="upfile\高校优秀教师先进事迹材料.docx" />
+    <Content Include="TM\ashx\TMDocumentHandler.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ashx\ExportExcel.aspx.cs">
@@ -3867,33 +3913,6 @@
     <Compile Include="sys\Users.aspx.designer.cs">
       <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
-    <Compile Include="testfile\ashx\testcontentadd.ashx.cs">
-      <DependentUpon>testcontentadd.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="testfile\testcontentadd.aspx.cs">
-      <DependentUpon>testcontentadd.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="testfile\testcontentadd.aspx.designer.cs">
-      <DependentUpon>testcontentadd.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="testfile\testfile.ashx.cs">
-      <DependentUpon>testfile.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="testfile\testfile.aspx.cs">
-      <DependentUpon>testfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="testfile\testfile.aspx.designer.cs">
-      <DependentUpon>testfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="test\ashx\InvestigateHandler.ashx.cs">
-      <DependentUpon>InvestigateHandler.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="test\Investigate.aspx.cs">
-      <DependentUpon>Investigate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="test\Investigate.aspx.designer.cs">
-      <DependentUpon>Investigate.aspx</DependentUpon>
-    </Compile>
     <Compile Include="TM\ashx\TMBreakRulesHandler.ashx.cs">
       <DependentUpon>TMBreakRulesHandler.ashx</DependentUpon>
     </Compile>
@@ -3917,6 +3936,9 @@
     </Compile>
     <Compile Include="TM\ashx\TMDetermineHandler.ashx.cs">
       <DependentUpon>TMDetermineHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="TM\ashx\TMDocumentHandler.ashx.cs">
+      <DependentUpon>TMDocumentHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="TM\ashx\TMInvestigateFillHandler.ashx.cs">
       <DependentUpon>TMInvestigateFillHandler.ashx</DependentUpon>
@@ -4049,6 +4071,13 @@
     </Compile>
     <Compile Include="TM\TMDetermineFill.aspx.designer.cs">
       <DependentUpon>TMDetermineFill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TM\TMDocument.aspx.cs">
+      <DependentUpon>TMDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TM\TMDocument.aspx.designer.cs">
+      <DependentUpon>TMDocument.aspx</DependentUpon>
     </Compile>
     <Compile Include="TM\TMInspectInfo.aspx.cs">
       <DependentUpon>TMInspectInfo.aspx</DependentUpon>
@@ -4279,7 +4308,6 @@
     <Folder Include="html\" />
     <Folder Include="js\" />
     <Folder Include="Student\html\" />
-    <Folder Include="test\html\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="scripts\jQgrid\gray\images\MSSCCPRJ.SCC" />
