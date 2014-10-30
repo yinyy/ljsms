@@ -294,13 +294,13 @@
     save2: function (iid, fn) {//保存某学生问卷信息
         var rows = [];
 
-        top.$('table.question tr').each(function (index1, item) {
+        top.$('table.question tr:not(:first)').each(function (index1, item) {            
             var row = { InvestigateId: iid, TeachCourseId: $(item).attr('tcid') };
             $(item).children().children('textarea').each(function (index2, tt) {
                 if ($(tt).attr('col') == 1) {
-                    row['Col1'] = $(tt).text();
+                    row['Col1'] = $(tt).val();
                 } else if ($(tt).attr('col') == 2) {
-                    row['Col2'] = $(tt).text();
+                    row['Col2'] = $(tt).val();
                 }
 
                 rows[rows.length] = row;
