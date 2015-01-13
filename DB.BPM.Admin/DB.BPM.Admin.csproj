@@ -3434,6 +3434,7 @@
     <Content Include="TM\html\TMTeachCheckDetails.html" />
     <Content Include="TM\html\TMTeachCourse.html" />
     <Content Include="TM\html\TMTeachCourseDetail.html" />
+    <Content Include="TM\html\TMTeacherInfo.html" />
     <Content Include="TM\html\TMTeachInspect.html" />
     <Content Include="TM\html\TMDocument.html" />
     <Content Include="TM\html\TMTerm.html" />
@@ -3480,6 +3481,7 @@
     <Content Include="TM\js\TMTeachCourse.js" />
     <Content Include="TM\js\TMTeachCourseDetail.js" />
     <Content Include="TM\js\TMTeacherCourseTable.js" />
+    <Content Include="TM\js\TMTeacherInfo.js" />
     <Content Include="TM\js\TMTeachInspect.js" />
     <Content Include="TM\js\TMTerm.js" />
     <Content Include="TM\js\TMVClassStudents.js" />
@@ -3522,6 +3524,7 @@
     <Content Include="TM\TMTeachCourse.aspx" />
     <Content Include="TM\TMTeachCourseDetail.aspx" />
     <Content Include="TM\TMTeacherCourseTable.aspx" />
+    <Content Include="TM\TMTeacherInfo.aspx" />
     <Content Include="TM\TMTeachInspect.aspx" />
     <Content Include="TM\TMTerm.aspx" />
     <Content Include="TM\TMVClassStudents.aspx" />
@@ -3760,6 +3763,7 @@
     <Content Include="TM\ashx\TMDetermineHandler.ashx" />
     <Content Include="TM\ashx\TMDetermineFillHandler.ashx" />
     <Content Include="TM\ashx\TMDocumentHandler.ashx" />
+    <Content Include="TM\ashx\TMTeacherInfoHandler.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ashx\ExportExcel.aspx.cs">
@@ -3969,6 +3973,9 @@
     </Compile>
     <Compile Include="TM\ashx\TMTeachCourseHandler.ashx.cs">
       <DependentUpon>TMTeachCourseHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="TM\ashx\TMTeacherInfoHandler.ashx.cs">
+      <DependentUpon>TMTeacherInfoHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="TM\ashx\TMTeachInspectHandler.ashx.cs">
       <DependentUpon>TMTeachInspectHandler.ashx</DependentUpon>
@@ -4247,6 +4254,13 @@
     <Compile Include="TM\TMTeacherCourseTable.aspx.designer.cs">
       <DependentUpon>TMTeacherCourseTable.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TM\TMTeacherInfo.aspx.cs">
+      <DependentUpon>TMTeacherInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TM\TMTeacherInfo.aspx.designer.cs">
+      <DependentUpon>TMTeacherInfo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TM\TMTeachInspect.aspx.cs">
       <DependentUpon>TMTeachInspect.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4348,9 +4362,10 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>25377</DevelopmentServerPort>
+          <DevelopmentServerPort>57723</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44421/</IISUrl>
+          <IISUrl>
+          </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

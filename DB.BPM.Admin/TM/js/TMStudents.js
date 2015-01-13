@@ -180,7 +180,7 @@ var CRUD = {
         var hDialog = top.jQuery.hDialog({
 
             onLoad: function () {
-                //初始化下拉列表二级学院和所学专业
+               
                 //top.$('#txt_College').combobox({ multiple: false, valueField: 'KeyId', textField: 'Title', editable: false });
 
                 //$.getJSON(actionURL + '?' + createParam('colleges'), function (d) {
@@ -328,7 +328,7 @@ var CRUD = {
                     top.$('#txt_QQ').val(row.QQ);
                     top.$('#txt_Email').val(row.Email);
                     top.$('#txt_Remark').val(row.Remark);
-                    //初始化下拉列表二级学院和所学专业
+                   
                     //top.$('#txt_College').combobox({ multiple: false, valueField: 'KeyId', textField: 'Title', editable: false });
 
                     //$.getJSON(actionURL + '?' + createParam('colleges'), function (d) {
@@ -373,8 +373,7 @@ var CRUD = {
                             }
 
                             //conchange结束
-                            //根据班级ID，获取二级学院和专业
-
+                           
 
                         });
 

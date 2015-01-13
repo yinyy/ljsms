@@ -117,7 +117,7 @@ var grid = {
             url: actionURL + "?action=GetStudentSum",
 
             toolbar: '#toolbar',
-            title: "二级学院学生缺勤情况汇总表（本学期）",
+            title: "学生缺勤情况汇总表（本学期）",
             iconCls: 'icon icon-list',
             width: winSize.width,
             height: winSize.height,

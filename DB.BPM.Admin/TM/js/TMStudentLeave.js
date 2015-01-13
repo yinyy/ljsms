@@ -121,7 +121,7 @@ var CRUD = {
     add: function () {
         var hDialog = top.jQuery.hDialog({
             onLoad:function(){
-                //初始化下拉列表二级学院和所学专业
+                
                 //top.$('#txt_College').combobox({ multiple: false, valueField: 'KeyId', textField: 'Title', editable: false });
                
                 $.getJSON(actionURLlb + "?categoryId=10", function (dleaveclass) {

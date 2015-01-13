@@ -64,6 +64,7 @@
     <Compile Include="bll\TMTeachCheckDetailsBll.cs" />
     <Compile Include="bll\TMTeachCourseBll.cs" />
     <Compile Include="bll\TMTeachCourseDetailBll.cs" />
+    <Compile Include="bll\TMTeacherInfoBll.cs" />
     <Compile Include="bll\TMTeachInspectBll.cs" />
     <Compile Include="bll\TMTermBll.cs" />
     <Compile Include="bll\TMVClassStudentsBll.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="dal\TMTeachCheckDetailsDal.cs" />
     <Compile Include="dal\TMTeachCourseDal.cs" />
     <Compile Include="dal\TMTeachCourseDetailDal.cs" />
+    <Compile Include="dal\TMTeacherInfoDal.cs" />
     <Compile Include="dal\TMTeachInspectDal.cs" />
     <Compile Include="dal\TMTermDal.cs" />
     <Compile Include="dal\TMVClassStudentsDal.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="model\TMTeachCheckModel.cs" />
     <Compile Include="model\TMTeachCourseDetailModel.cs" />
     <Compile Include="model\TMTeachCourseModel.cs" />
+    <Compile Include="model\TMTeacherInfoModel.cs" />
     <Compile Include="model\TMTeachInspectModel.cs" />
     <Compile Include="model\TMTermModel.cs" />
     <Compile Include="model\TMVClassStudentsModel.cs" />

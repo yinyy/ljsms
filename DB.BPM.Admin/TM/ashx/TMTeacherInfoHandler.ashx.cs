@@ -16,7 +16,7 @@ namespace DB.BPM.Admin.TM.ashx
     /// <summary>
     /// dbHandler 的摘要说明
     /// </summary>
-    public class TMBreakRulesHandler : IHttpHandler,IRequiresSessionState
+    public class TMTeacherInfoHandler : IHttpHandler,IRequiresSessionState
     {
         public void ProcessRequest(HttpContext context)
         {
@@ -24,34 +24,31 @@ namespace DB.BPM.Admin.TM.ashx
 
             UserBll.Instance.CheckUserOnlingState();
 
-            int k;
+            //int k;
             var json = HttpContext.Current.Request["json"];
-            var rpm = new RequestParamModel<TMBreakRulesModel>(context) { CurrentContext = context };
+            var rpm = new RequestParamModel<TMTeacherInfoModel>(context) { CurrentContext = context };
             if (!string.IsNullOrEmpty(json))
             {
-                rpm = JSONhelper.ConvertToObject<RequestParamModel<TMBreakRulesModel>>(json);
+                rpm = JSONhelper.ConvertToObject<RequestParamModel<TMTeacherInfoModel>>(json);
                 rpm.CurrentContext = context;
             }
 
             switch (rpm.Action)
             {
                 case "add":
-                    context.Response.Write(TMBreakRulesBll.Instance.Add(rpm.Entity));
+                    context.Response.Write(TMTeacherInfoBll.Instance.Add(rpm.Entity));
                     break;
                 case "edit":
-                    TMBreakRulesModel d = new TMBreakRulesModel();
+                    TMTeacherInfoModel d = new TMTeacherInfoModel();
                     d.InjectFrom(rpm.Entity);
                     d.KeyId = rpm.KeyId;
-                    context.Response.Write(TMBreakRulesBll.Instance.Update(d));
+                    context.Response.Write(TMTeacherInfoBll.Instance.Update(d));
                     break;
                 case "delete":
-                    context.Response.Write(TMBreakRulesBll.Instance.Delete(rpm.KeyId));
-                    break;
-                case "getAll":
-                     context.Response.Write(TMBreakRulesBll.Instance.GetJson(rpm.Pageindex, 1000, rpm.Filter, rpm.Sort, rpm.Order));
+                    context.Response.Write(TMTeacherInfoBll.Instance.Delete(rpm.KeyId));
                     break;
                 default:
-                    context.Response.Write(TMBreakRulesBll.Instance.GetJson(rpm.Pageindex, rpm.Pagesize, rpm.Filter, rpm.Sort, rpm.Order));
+                    context.Response.Write(TMTeacherInfoBll.Instance.GetJson(rpm.Pageindex, rpm.Pagesize, rpm.Filter, rpm.Sort, rpm.Order));
                     break;
             }
         }

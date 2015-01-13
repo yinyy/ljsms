@@ -122,7 +122,7 @@ var CRUD = {
     add: function () {
         var hDialog = top.jQuery.hDialog({
             onLoad: function () {
-                //初始化下拉列表二级学院和所学专业
+               
               
 
                 $.getJSON(actionURLlb + "?categoryId=10", function (dleaveclass) {

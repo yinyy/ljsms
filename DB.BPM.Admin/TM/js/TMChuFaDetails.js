@@ -193,7 +193,7 @@ var CRUD = {
                 //获取违纪类别GRID并绑定
                 top.$("#txt_RuleId").combogrid(
           {
-              url: ruleURL,
+              url: ruleURL + '?' + createParam('getAll'),
               panelWidth: 500,
               idField: 'KeyId',
               textField: 'RuleName',
