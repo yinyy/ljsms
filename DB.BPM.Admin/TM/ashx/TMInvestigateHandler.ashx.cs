@@ -125,6 +125,12 @@ namespace DB.BPM.Admin.TM.ashx
                         PublicMethod.GetInt(context.Request.Params["investigateId"]),
                         PublicMethod.GetInt(context.Request.Params["studentId"])));
                     break;
+                case "analyseteacher":
+                    context.Response.Write(TMInvestigateBll.Instance.AnalyseTeacher(rpm.KeyId));
+                    break;
+                case "analysecourse":
+                    context.Response.Write(TMInvestigateBll.Instance.AnalyseCourse(rpm.KeyId));
+                    break;
                 default:
                     context.Response.Write(TMInvestigateBll.Instance.GetJson(rpm.Pageindex, rpm.Pagesize, rpm.Filter, rpm.Sort, rpm.Order));
                     break;

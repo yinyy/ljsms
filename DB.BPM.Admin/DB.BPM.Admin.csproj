@@ -3445,6 +3445,7 @@
     <Content Include="TM\js\dic.js" />
     <Content Include="TM\js\DetermineOp.js" />
     <Content Include="TM\js\InvestigateOp.js" />
+    <Content Include="TM\js\TMDocumentOper.js" />
     <Content Include="TM\js\TMDocument.js" />
     <Content Include="TM\js\TMDetermine.js" />
     <Content Include="TM\js\TMDetermineFill.js" />
@@ -3498,6 +3499,7 @@
     <Content Include="TM\ashx\TMDetermineExport.aspx" />
     <Content Include="TM\TMDetermineFill.aspx" />
     <Content Include="TM\TMDocument.aspx" />
+    <Content Include="TM\TMDocumentOper.aspx" />
     <Content Include="TM\TMInspectInfo.aspx" />
     <Content Include="TM\TMInvestigate.aspx" />
     <Content Include="TM\TMInvestigateFill.aspx" />
@@ -3760,6 +3762,8 @@
     <Content Include="TM\ashx\TMDetermineHandler.ashx" />
     <Content Include="TM\ashx\TMDetermineFillHandler.ashx" />
     <Content Include="TM\ashx\TMDocumentHandler.ashx" />
+    <Content Include="TM\ashx\TMDocumentOperHandler.ashx" />
+    <Content Include="TM\template_course.xlsm" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ashx\ExportExcel.aspx.cs">
@@ -3940,6 +3944,9 @@
     <Compile Include="TM\ashx\TMDocumentHandler.ashx.cs">
       <DependentUpon>TMDocumentHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="TM\ashx\TMDocumentOperHandler.ashx.cs">
+      <DependentUpon>TMDocumentOperHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="TM\ashx\TMInvestigateFillHandler.ashx.cs">
       <DependentUpon>TMInvestigateFillHandler.ashx</DependentUpon>
     </Compile>
@@ -4078,6 +4085,13 @@
     </Compile>
     <Compile Include="TM\TMDocument.aspx.designer.cs">
       <DependentUpon>TMDocument.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TM\TMDocumentOper.aspx.cs">
+      <DependentUpon>TMDocumentOper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TM\TMDocumentOper.aspx.designer.cs">
+      <DependentUpon>TMDocumentOper.aspx</DependentUpon>
     </Compile>
     <Compile Include="TM\TMInspectInfo.aspx.cs">
       <DependentUpon>TMInspectInfo.aspx</DependentUpon>
@@ -4308,6 +4322,7 @@
     <Folder Include="html\" />
     <Folder Include="js\" />
     <Folder Include="Student\html\" />
+    <Folder Include="temp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="scripts\jQgrid\gray\images\MSSCCPRJ.SCC" />

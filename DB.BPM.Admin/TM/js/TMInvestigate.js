@@ -79,7 +79,7 @@ var grid = {
             { title: '答题数量', field: 'AnswerCount', width: 90, align: 'center' },
             {
                 title: '问卷分析', field: 'KeyId', width: 120, align: 'center', formatter: function (value, row, index) {
-                    return '<a href="javascript:void(0);" onclick="analyse('+row.KeyId+')">分析</a>'
+                    return '<a href="javascript:void(0);" onclick="analyse(' + row.KeyId + ', '+row.Kind+')">分析</a>'
                 }}
             ]],
             pagination: true,
@@ -336,6 +336,14 @@ var CRUD = {
     }
 };
 
-function analyse(iid) {
-    alert('分析编号为' + iid + '的问卷。');
+function analyse(iid, kind) {
+    $.get(actionURL, createParam((kind == DIC.Investigate.Kind.Teacher)?'analyseteacher':'analysecourse', iid), function (data) {
+        if (data.indexOf('error_')!=-1) {
+            alert(data.substring(6));
+        }else if(data.indexOf('success_')!=-1){
+            window.open('../'+data.substring(10));
+        }else{
+            alert(data);
+        }
+    }, 'text');
 }

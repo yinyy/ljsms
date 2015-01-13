@@ -302,9 +302,8 @@
                 } else if ($(tt).attr('col') == 2) {
                     row['Col2'] = $(tt).val();
                 }
-
-                rows[rows.length] = row;
             });
+            rows[rows.length] = row;
         });
 
         $.post(actionURL, { json: JSON.stringify({ keyId: 0, action: 'save_course' }), data: JSON.stringify(rows) }, function (data) {

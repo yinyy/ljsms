@@ -1,17 +1,22 @@
 ﻿
 div#investigate_page{
     text-align: center;
-}
-
-div#investigate_range{
     background-color: #ffffff;
     border: 1px solid #dbdbdb;
     width: 800px;
     margin: 20px auto;
-    text-align: left;
-    padding: 40px;
     color: #666666;
     font-family: 'Microsoft YaHei';
+}
+
+div#investigate_title{
+    text-align: left;
+    margin: auto 20px auto 20px;
+}
+
+div#investigate_range{
+    text-align: left;
+    padding: 20px;
 }
 
 div.question{

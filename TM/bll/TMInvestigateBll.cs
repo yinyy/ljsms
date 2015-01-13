@@ -9,6 +9,11 @@ using DB.Common;
 using DB.BPM.Core;
 using DB.Common.Data;
 using TM.model;
+using System.Data.SqlClient;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Reflection;
+using System.IO;
+using System.Web;
 
 namespace TM.Bll
 {
@@ -190,6 +195,265 @@ namespace TM.Bll
                 InvestigateId = iid,
                 StudentId = sid
             }).OrderBy(m => m.TeachCourseId).Select(m => new { TeachCourseId = m.TeachCourseId, Col1 = m.Col1, Col2 = m.Col2 }).ToList());
+        }
+
+        public string AnalyseTeacher(int kid)
+        {
+            Excel.Application app = new Excel.Application();
+            Excel.Workbook book = app.Workbooks.Add();
+            Excel.Worksheet sheet;
+            Excel.Range rng;
+            int iRow = 1;
+            string sql;
+            string file="";
+
+            try
+            {
+                #region 问卷详情
+                sql = "SELECT dbo.TM_Course.CourseName, dbo.Sys_Users.TrueName, dbo.TM_ClassInfo.ClassName, dbo.TM_Students.Name, t.Score " +
+                "FROM V_TM_Fill1_Detail t INNER JOIN " +
+                "dbo.TM_TeachCourse ON t.TeachCourseId = dbo.TM_TeachCourse.KeyId INNER JOIN " +
+                "dbo.Sys_Users ON dbo.TM_TeachCourse.TeacherID = dbo.Sys_Users.KeyId INNER JOIN " +
+                "dbo.TM_Course ON dbo.TM_TeachCourse.CourseID = dbo.TM_Course.KeyId INNER JOIN " +
+                "dbo.TM_ClassInfo ON t.ClassID = dbo.TM_ClassInfo.KeyId INNER JOIN " +
+                "dbo.TM_Students ON t.StudentId = dbo.TM_Students.KeyId " +
+                "where InvestigateId = " + kid;
+
+                using (SqlDataReader reader = DbUtils.GetReader(sql))
+                {
+                    sheet = book.Worksheets.Add();
+                    sheet.Name = "问卷详情";
+
+                    iRow = 1;
+
+                    rng = sheet.Cells[iRow, 1];
+                    rng.Value = "教师";
+                    rng = sheet.Cells[iRow, 2];
+                    rng.Value = "课程";
+                    rng = sheet.Cells[iRow, 3];
+                    rng.Value = "班级";
+                    rng = sheet.Cells[iRow, 4];
+                    rng.Value = "学生";
+                    rng = sheet.Cells[iRow, 5];
+                    rng.Value = "分数";
+
+                    while (reader.Read())
+                    {
+                        iRow++;
+
+                        rng = sheet.Cells[iRow, 1];
+                        rng.Value = reader["TrueName"].ToString();
+
+                        rng = sheet.Cells[iRow, 2];
+                        rng.Value = reader["CourseName"].ToString();
+
+                        rng = sheet.Cells[iRow, 3];
+                        rng.Value = reader["ClassName"].ToString();
+
+                        rng = sheet.Cells[iRow, 4];
+                        string tmp = reader["Name"].ToString();
+                        rng.Value = tmp.Substring(0, 1).PadRight(tmp.Length, 'X');
+
+                        rng = sheet.Cells[iRow, 5];
+                        rng.Value = "'" + reader["Score"].ToString();
+                    }
+                }
+                #endregion
+
+                #region 按班级统计
+                sql = "SELECT dbo.TM_Course.CourseName, dbo.Sys_Users.TrueName, dbo.TM_ClassInfo.ClassName, t.Score " +
+                "FROM (select InvestigateId, TeachCourseId, ClassId, AVG(V_TM_Fill1_Detail.Score) as Score from V_TM_Fill1_Detail where InvestigateId = " + kid + " group by InvestigateId, TeachCourseId, ClassId) t INNER JOIN " +
+                "dbo.TM_TeachCourse ON t.TeachCourseId = dbo.TM_TeachCourse.KeyId INNER JOIN " +
+                "dbo.Sys_Users ON dbo.TM_TeachCourse.TeacherID = dbo.Sys_Users.KeyId INNER JOIN " +
+                "dbo.TM_Course ON dbo.TM_TeachCourse.CourseID = dbo.TM_Course.KeyId INNER JOIN " +
+                "dbo.TM_ClassInfo ON t.ClassID = dbo.TM_ClassInfo.KeyId";
+
+                using (SqlDataReader reader = DbUtils.GetReader(sql))
+                {
+                    sheet = book.Worksheets.Add(Type.Missing, sheet);
+                    sheet.Name = "按班级汇总";
+
+                    iRow = 1;
+
+                    rng = sheet.Cells[iRow, 1];
+                    rng.Value = "教师";
+                    rng = sheet.Cells[iRow, 2];
+                    rng.Value = "课程";
+                    rng = sheet.Cells[iRow, 3];
+                    rng.Value = "班级";
+                    rng = sheet.Cells[iRow, 4];
+                    rng.Value = "分数";
+
+                    while (reader.Read())
+                    {
+                        iRow++;
+
+                        rng = sheet.Cells[iRow, 1];
+                        rng.Value = reader["TrueName"].ToString();
+
+                        rng = sheet.Cells[iRow, 2];
+                        rng.Value = reader["CourseName"].ToString();
+
+                        rng = sheet.Cells[iRow, 3];
+                        rng.Value = reader["ClassName"].ToString();
+
+                        rng = sheet.Cells[iRow, 4];
+                        rng.Value = "'" + reader["Score"].ToString();
+                    }
+                }
+                #endregion
+
+                #region 按教师统计
+                sql = "SELECT dbo.TM_Course.CourseName, dbo.Sys_Users.TrueName, t.Score " +
+                "FROM (select InvestigateId, TeachCourseId, AVG(V_TM_Fill1_Detail.Score) as Score from V_TM_Fill1_Detail where InvestigateId = " + kid + " group by InvestigateId, TeachCourseId) t INNER JOIN " +
+                "dbo.TM_TeachCourse ON t.TeachCourseId = dbo.TM_TeachCourse.KeyId INNER JOIN " +
+                "dbo.Sys_Users ON dbo.TM_TeachCourse.TeacherID = dbo.Sys_Users.KeyId INNER JOIN " +
+                "dbo.TM_Course ON dbo.TM_TeachCourse.CourseID = dbo.TM_Course.KeyId";
+
+                using (SqlDataReader reader = DbUtils.GetReader(sql))
+                {
+                    sheet = book.Worksheets.Add(Type.Missing, sheet);
+                    sheet.Name = "按教师汇总";
+
+                    iRow = 1;
+
+                    rng = sheet.Cells[iRow, 1];
+                    rng.Value = "教师";
+                    rng = sheet.Cells[iRow, 2];
+                    rng.Value = "课程";
+                    rng = sheet.Cells[iRow, 3];
+                    rng.Value = "分数";
+
+                    while (reader.Read())
+                    {
+                        iRow++;
+
+                        rng = sheet.Cells[iRow, 1];
+                        rng.Value = reader["TrueName"].ToString();
+
+                        rng = sheet.Cells[iRow, 2];
+                        rng.Value = reader["CourseName"].ToString();
+
+                        rng = sheet.Cells[iRow, 3];
+                        rng.Value = "'" + reader["Score"].ToString();
+                    }
+                }
+                #endregion
+            }
+            catch (Exception e)
+            {
+                return "error_" + e.Message;
+            }
+            finally
+            {
+                if (book != null)
+                {
+                    try
+                    {
+                        file = string.Format("~/temp/{0}.xlsx", Convert.ToString(DateTime.Now.Ticks, 16));
+                        book.SaveAs(System.Web.HttpContext.Current.Server.MapPath(file));
+                    }
+                    catch (Exception ee)
+                    {
+                        Console.WriteLine(ee.Message);
+                    }
+                }
+                if (app != null)
+                {
+                    app.Quit();
+                }
+            }
+
+            return "success_" + file;
+        }
+
+        public string AnalyseCourse(int kid)
+        {
+            string sql = string.Format("select Sys_Users.TrueName, TM_Course.CourseName,TM_ClassInfo.ClassName, t.Col1, t.Col2 from ("+
+                "SELECT TeachCourseId, classid, 'Col1'=stuff((select '；' + Col1 from TM_InvestigateFill2 f2 where f2.InvestigateId = {0} for xml path('')) , 1 , 1 , ''),'Col2'=stuff((select '；' + Col2 from TM_InvestigateFill2 f2 where f2.InvestigateId = {0} for xml path('')) , 1 , 1 , '')" +
+                "FROM dbo.TM_InvestigateFill2 INNER JOIN " +
+                "dbo.TM_Students ON dbo.TM_InvestigateFill2.StudentId = dbo.TM_Students.KeyId INNER JOIN " +
+                "dbo.TM_ClassInfo ON dbo.TM_Students.ClassID = dbo.TM_ClassInfo.KeyId " +
+                "WHERE (dbo.TM_InvestigateFill2.InvestigateId = {0}) " +
+                "group by TeachCourseId, classid) t inner join TM_TeachCourse on t.TeachCourseId=TM_TeachCourse.KeyId "+
+                "inner join Sys_Users on TM_TeachCourse.TeacherID=Sys_Users.KeyId "+
+                "inner join TM_Course on TM_TeachCourse.CourseID = TM_Course.KeyId "+
+                "inner join TM_ClassInfo on t.ClassID=TM_ClassInfo.KeyId", kid);
+
+
+            Excel.Application app = new Excel.Application();
+            Excel.Workbook book = app.Workbooks.Add();
+            Excel.Worksheet sheet;
+            Excel.Range rng;
+            int iRow = 1;
+            string file = "";
+
+            try
+            {
+                using (SqlDataReader reader = DbUtils.GetReader(sql))
+                {
+                    sheet = book.Worksheets.Add();
+                    sheet.Name = "问卷汇总";
+
+                    iRow = 1;
+
+                    rng = sheet.Cells[iRow, 1];
+                    rng.Value = "教师";
+                    rng = sheet.Cells[iRow, 2];
+                    rng.Value = "课程";
+                    rng = sheet.Cells[iRow, 3];
+                    rng.Value = "班级";
+                    rng = sheet.Cells[iRow, 4];
+                    rng.Value = "存在问题";
+                    rng = sheet.Cells[iRow, 5];
+                    rng.Value = "反馈意见及建议";
+
+                    while (reader.Read())
+                    {
+                        iRow++;
+
+                        rng = sheet.Cells[iRow, 1];
+                        rng.Value = reader["TrueName"].ToString();
+
+                        rng = sheet.Cells[iRow, 2];
+                        rng.Value = reader["CourseName"].ToString();
+
+                        rng = sheet.Cells[iRow, 3];
+                        rng.Value = reader["ClassName"].ToString();
+
+                        rng = sheet.Cells[iRow, 4];
+                        rng.Value = reader["Col1"].ToString();
+
+                        rng = sheet.Cells[iRow, 5];
+                        rng.Value = reader["Col2"].ToString();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return "error_" + e.Message;
+            }
+            finally
+            {
+                if (book != null)
+                {
+                    try
+                    {
+                        file = string.Format("~/temp/{0}.xlsx", Convert.ToString(DateTime.Now.Ticks, 16));
+                        book.SaveAs(System.Web.HttpContext.Current.Server.MapPath(file));
+                    }
+                    catch (Exception ee)
+                    {
+                        Console.WriteLine(ee.Message);
+                    }
+                }
+                if (app != null)
+                {
+                    app.Quit();
+                }
+            }
+
+            return "success_" + file;
         }
     }
 
