@@ -11,6 +11,8 @@ $(function () {
     $('#a_paper').click(CRUD.paper);
     $('#a_preview').click(CRUD.preview);
     $('#a_copy').click(CRUD.copy);
+    $('#a_inport').click(CRUD.inport);
+    $('#a_export').click(CRUD.export0);
 
 //高级查询
    $('#a_search').click(function () {
@@ -134,7 +136,7 @@ var CRUD = {
                 top.$('#txt_Started, #txt_Ended').datebox({
                     required: true,
                 }).datebox('setValue', str);
-                
+
                 top.$('#txt_Status').combobox({
                     url: '/sys/ashx/DicHandler.ashx?categoryId=' + DIC.Investigate.Status.Category,//TODO:问卷状态id
                     valueField: 'KeyId',
@@ -333,6 +335,102 @@ var CRUD = {
         } else {
             msg.warning('请选择要复制的行。');
         }
+    },
+    inport: function () {
+        var row = grid.getSelectedRow();
+        if (row) {
+            //判断能否编辑
+            var now = new Date().getTime();
+            var started = Date.parse(row.Started.substring(0, 10));
+
+            if (now >= started) {
+                alert('调查已经开始，不能执行导入操作。');
+                return;
+            }
+
+            if (row.Kind != DIC.Investigate.Kind.Teacher) {
+                alert('只允许导入教师调查问卷。');
+                return;
+            }
+
+            if (row.ItemCount == 0 || (row.ItemCount > 0 && confirm('导入操作将删除目前已有的题目。是否继续？'))) {
+                //弹出窗口上传文件
+                var hDialog = top.jQuery.hDialog({
+                    title: '上传', width: 450, height: 117, iconCls: 'icon-disk_upload',
+                    content: '<form id="uiform"><table class="grid"><tr><td><input type="file" id="fileToUpload" style="width: 400px;"/></td></tr></table></form>',
+                    submit: function () {
+                        if (top.$('#fileToUpload')[0].files[0] == null) {
+                            alert('请选择上传文件。');
+                            return;
+                        }
+
+                        var fd = new FormData();
+                        fd.append('fileToUpload', top.$('#fileToUpload')[0].files[0]);
+                        var xhr = new XMLHttpRequest();
+                        xhr.addEventListener('load', CRUD.upload_completed, false);
+                        xhr.addEventListener('error', CRUD.uploadFailed, false);
+                        xhr.addEventListener('abort', CRUD.uploadCanceled, false);
+                        xhr.upload.addEventListener('progress', CRUD.uploadProgress, false);
+                        xhr.open('POST', actionURL + '?' + createParam('inport', row.KeyId));
+                        xhr.send(fd);
+
+                        hDialog.dialog('close');
+                    }
+                });
+            }
+        } else {
+            msg.warning('请选择行。');
+        }
+    },
+
+    export0: function(){
+        var row = grid.getSelectedRow();
+        if (row) {
+            if (row.Kind != DIC.Investigate.Kind.Teacher) {
+                alert('只允许导出教师调查问卷。');
+                return;
+            }
+
+            $.post(actionURL, createParam('export', row.KeyId), function (data) {
+                if (data.indexOf('error_')!=-1) {
+                    msg.warning(data.substring(6));
+                } else if (data.indexOf('success_')!=-1) {
+                    window.open('../'+data.substring(10));
+                } else {
+                    alert(data);
+                }
+            }, 'text');
+        } else {
+            msg.warning('请选择行。');
+        }
+    },
+
+    uploadProgress: function (evt) {
+        //if (evt.lengthComputable) {
+        //    var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+        //    alert(percentComplete.toString() + '%');
+        //}
+        //else {
+        //    alert('unable to compute');
+        //}
+    },
+
+    upload_completed: function (evt) {
+        var ans = evt.target.responseText;
+        if (ans == 'success') {
+            msg.ok('导入成功！');
+            grid.reload();
+        } else {
+            msg.warning('导入失败！');
+        }
+    },
+
+    upload_failed: function () {
+        msg.warning('操作失败！');
+    },
+
+    upload_canceled: function () {
+        msg.warning('操作取消！');
     }
 };
 

@@ -49,15 +49,15 @@ namespace TM.Bll
 
         public string GetCourseInvestigatePreviewJson(int studentId)
         {
-            string sql = "SELECT TM_TeachCourse.KeyId AS TeachCourseId, TM_Course.CourseName "+
-                "FROM TM_TeachCourse "+
-                "INNER JOIN TM_VirtualClass ON TM_TeachCourse.VClassID = TM_VirtualClass.KeyId "+
-                "INNER JOIN TM_VClassStudents ON TM_VirtualClass.KeyId = TM_VClassStudents.VClassID "+
-                "INNER JOIN TM_Course ON TM_TeachCourse.CourseID = TM_Course.KeyId "+
-                "WHERE TM_TeachCourse.TermID=@TermID AND TM_VClassStudents.StudentID=@StudentId "+
+            string sql = "SELECT TM_TeachCourse.KeyId AS TeachCourseId, TM_Course.CourseName " +
+                "FROM TM_TeachCourse " +
+                "INNER JOIN TM_VirtualClass ON TM_TeachCourse.VClassID = TM_VirtualClass.KeyId " +
+                "INNER JOIN TM_VClassStudents ON TM_VirtualClass.KeyId = TM_VClassStudents.VClassID " +
+                "INNER JOIN TM_Course ON TM_TeachCourse.CourseID = TM_Course.KeyId " +
+                "WHERE TM_TeachCourse.TermID=@TermID AND TM_VClassStudents.StudentID=@StudentId " +
                 "ORDER BY TM_TeachCourse.KeyId";
 
-            var q = DbUtils.ExecuteReader<InvestigateTempModel>(sql, new {TermID=SysVisitor.Instance.GetCurrentTerm().KeyId, StudentId=studentId }).ToList();
+            var q = DbUtils.ExecuteReader<InvestigateTempModel>(sql, new { TermID = SysVisitor.Instance.GetCurrentTerm().KeyId, StudentId = studentId }).ToList();
 
             return JSONhelper.ToJson(q);
         }
@@ -97,19 +97,19 @@ namespace TM.Bll
 
         public string GetTeacherInvestigatesByStudentIdJson(int studentId, int kind, int status)
         {
-            string sql = "select TM_Investigate.TermId,TM_Investigate.KeyId as InvestigateId, TM_Investigate.Started, TM_Investigate.Ended, TM_Investigate.Title as InvestigateTitle, v1.*, "+
-                "(select count(*) from TM_InvestigateFill where TM_InvestigateFill.InvestigateId=TM_Investigate.KeyId and TM_InvestigateFill.StudentId=v1.StudentId and TM_InvestigateFill.TeachCourseId=v1.TeachCourseId) as Status "+
+            string sql = "select TM_Investigate.TermId,TM_Investigate.KeyId as InvestigateId, TM_Investigate.Started, TM_Investigate.Ended, TM_Investigate.Title as InvestigateTitle, v1.*, " +
+                "(select count(*) from TM_InvestigateFill where TM_InvestigateFill.InvestigateId=TM_Investigate.KeyId and TM_InvestigateFill.StudentId=v1.StudentId and TM_InvestigateFill.TeachCourseId=v1.TeachCourseId) as Status " +
                 "from TM_Investigate cross join (SELECT dbo.Sys_Users.TrueName as TeacherName, TM_TeachCourse.KeyId as TeachCourseId, " +
-                "dbo.TM_Course.CourseName, dbo.TM_Students.KeyId AS StudentId "+
-                "FROM dbo.TM_TeachCourse INNER JOIN "+
-                "dbo.Sys_Users ON dbo.TM_TeachCourse.TeacherID = dbo.Sys_Users.KeyId INNER JOIN "+
-                "dbo.TM_Course ON dbo.TM_TeachCourse.CourseID = dbo.TM_Course.KeyId INNER JOIN "+
-                "dbo.TM_VirtualClass ON dbo.TM_TeachCourse.VClassID = dbo.TM_VirtualClass.KeyId INNER JOIN "+
-                "dbo.TM_VClassStudents ON dbo.TM_VirtualClass.KeyId = dbo.TM_VClassStudents.VClassID INNER JOIN "+
-                "dbo.TM_Students ON dbo.TM_VClassStudents.StudentID = dbo.TM_Students.KeyId) v1 "+
+                "dbo.TM_Course.CourseName, dbo.TM_Students.KeyId AS StudentId " +
+                "FROM dbo.TM_TeachCourse INNER JOIN " +
+                "dbo.Sys_Users ON dbo.TM_TeachCourse.TeacherID = dbo.Sys_Users.KeyId INNER JOIN " +
+                "dbo.TM_Course ON dbo.TM_TeachCourse.CourseID = dbo.TM_Course.KeyId INNER JOIN " +
+                "dbo.TM_VirtualClass ON dbo.TM_TeachCourse.VClassID = dbo.TM_VirtualClass.KeyId INNER JOIN " +
+                "dbo.TM_VClassStudents ON dbo.TM_VirtualClass.KeyId = dbo.TM_VClassStudents.VClassID INNER JOIN " +
+                "dbo.TM_Students ON dbo.TM_VClassStudents.StudentID = dbo.TM_Students.KeyId) v1 " +
                 "WHERE TM_Investigate.TermId=@TermId and v1.StudentId=@StudentId and TM_Investigate.Started <= getDate() and TM_Investigate.Ended >= getDate() and TM_Investigate.Status=@Status and TM_Investigate.Kind=@Kind";
 
-            return JSONhelper.ToJson(DbUtils.ExecuteReader<InvestigateTempModel>(sql, new { TermId = SysVisitor.Instance.GetCurrentTerm().KeyId, StudentId = studentId, Status=status, Kind=kind }).ToList());
+            return JSONhelper.ToJson(DbUtils.ExecuteReader<InvestigateTempModel>(sql, new { TermId = SysVisitor.Instance.GetCurrentTerm().KeyId, StudentId = studentId, Status = status, Kind = kind }).ToList());
         }
 
         public string GetCourseInvestigatesByStudentIdJson(int studentId, int kind, int status)
@@ -205,7 +205,7 @@ namespace TM.Bll
             Excel.Range rng;
             int iRow = 1;
             string sql;
-            string file="";
+            string file = "";
 
             try
             {
@@ -369,15 +369,15 @@ namespace TM.Bll
 
         public string AnalyseCourse(int kid)
         {
-            string sql = string.Format("select Sys_Users.TrueName, TM_Course.CourseName,TM_ClassInfo.ClassName, t.Col1, t.Col2 from ("+
+            string sql = string.Format("select Sys_Users.TrueName, TM_Course.CourseName,TM_ClassInfo.ClassName, t.Col1, t.Col2 from (" +
                 "SELECT TeachCourseId, classid, 'Col1'=stuff((select '；' + Col1 from TM_InvestigateFill2 f2 where f2.InvestigateId = {0} for xml path('')) , 1 , 1 , ''),'Col2'=stuff((select '；' + Col2 from TM_InvestigateFill2 f2 where f2.InvestigateId = {0} for xml path('')) , 1 , 1 , '')" +
                 "FROM dbo.TM_InvestigateFill2 INNER JOIN " +
                 "dbo.TM_Students ON dbo.TM_InvestigateFill2.StudentId = dbo.TM_Students.KeyId INNER JOIN " +
                 "dbo.TM_ClassInfo ON dbo.TM_Students.ClassID = dbo.TM_ClassInfo.KeyId " +
                 "WHERE (dbo.TM_InvestigateFill2.InvestigateId = {0}) " +
-                "group by TeachCourseId, classid) t inner join TM_TeachCourse on t.TeachCourseId=TM_TeachCourse.KeyId "+
-                "inner join Sys_Users on TM_TeachCourse.TeacherID=Sys_Users.KeyId "+
-                "inner join TM_Course on TM_TeachCourse.CourseID = TM_Course.KeyId "+
+                "group by TeachCourseId, classid) t inner join TM_TeachCourse on t.TeachCourseId=TM_TeachCourse.KeyId " +
+                "inner join Sys_Users on TM_TeachCourse.TeacherID=Sys_Users.KeyId " +
+                "inner join TM_Course on TM_TeachCourse.CourseID = TM_Course.KeyId " +
                 "inner join TM_ClassInfo on t.ClassID=TM_ClassInfo.KeyId", kid);
 
 
@@ -447,6 +447,171 @@ namespace TM.Bll
                         Console.WriteLine(ee.Message);
                     }
                 }
+                if (app != null)
+                {
+                    app.Quit();
+                }
+            }
+
+            return "success_" + file;
+        }
+
+        public string ImportExcel(string filename, int iid)
+        {
+            Excel.Application app = new Excel.Application();
+            Excel.Workbook book = app.Workbooks.Open(filename);
+            Excel.Worksheet sheet = book.Worksheets[1];
+            Excel.Range rng;
+            int iRow = 2;
+            int iCol;
+            int iiid;
+            string tmp;
+
+            try
+            {
+                #region 先删除目前的题目设置
+                IEnumerable<TMInvestigateItemModel> iims = TMInvestigateItemDal.Instance.GetWhere(new { InvestigateId = iid });
+                foreach (TMInvestigateItemModel iim in iims)
+                {
+                    IEnumerable<TMInvestigateItemChoiceModel> iicms = TMInvestigateItemChoiceDal.Instance.GetWhere(new { InvestigateItemId = iim.KeyId });
+                    foreach (TMInvestigateItemChoiceModel iicm in iicms)
+                    {
+                        TMInvestigateItemChoiceDal.Instance.Delete(iicm.KeyId);
+                    }
+
+                    TMInvestigateItemDal.Instance.Delete(iim.KeyId);
+                }
+                #endregion
+
+                rng = sheet.Cells[iRow, 1];
+                tmp = Convert.ToString(rng.Value);
+                while (!string.IsNullOrWhiteSpace(tmp))
+                {
+                    TMInvestigateItemModel iim = new TMInvestigateItemModel();
+                    iim.InvestigateId = iid;
+                    iim.SortNumber = Convert.ToInt32(tmp);
+
+                    rng = sheet.Cells[iRow, 2];
+                    tmp = rng.Value;
+                    iim.Kind = tmp == "单选" ? 196 : 197;//这块是一个bug
+
+                    rng = sheet.Cells[iRow, 3];
+                    tmp = rng.Value;
+                    iim.Title = tmp;
+
+                    iim.Columns = "";
+                    iiid = TMInvestigateItemDal.Instance.Insert(iim);
+
+                    iCol = 4;
+                    rng = sheet.Cells[iRow, iCol];
+                    tmp = rng.Value;
+                    while (!string.IsNullOrWhiteSpace(tmp))
+                    {
+                        TMInvestigateItemChoiceModel iicm = new TMInvestigateItemChoiceModel();
+                        iicm.InvestigateItemId = iiid;
+                        iicm.HasOther = 0;
+                        iicm.SortNumber = (iCol - 4) / 2 + 1;
+                        iicm.Title = tmp;
+
+                        rng = sheet.Cells[iRow, ++iCol];
+                        tmp = Convert.ToString(rng.Value);
+                        iicm.Score = Convert.ToDecimal(tmp);
+
+                        TMInvestigateItemChoiceDal.Instance.Insert(iicm);
+
+                        rng = sheet.Cells[iRow, ++iCol];
+                        tmp = rng.Value;
+                    }
+
+                    rng = sheet.Cells[++iRow, 1];
+                    tmp = Convert.ToString(rng.Value);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (book != null)
+                {
+                    book.Close();
+                }
+                if (app != null)
+                {
+                    app.Quit();
+                }
+            }
+
+            return "success";
+        }
+
+        public string ExportExcel(int keyid)
+        {
+            Excel.Application app = new Excel.Application();
+            Excel.Workbook book = app.Workbooks.Add();
+            Excel.Worksheet sheet = book.Worksheets.Add();
+            Excel.Range rng;
+            int iRow;
+            int iCol;
+            string file = null;
+
+            try
+            {
+                rng = sheet.Cells[1, 1];
+                rng.Value = "序号";
+
+                rng = sheet.Cells[1, 2];
+                rng.Value = "类型";
+
+                rng = sheet.Cells[1, 3];
+                rng.Value = "题目";
+
+                iRow = 2;
+                IEnumerable<TMInvestigateItemModel> iims = TMInvestigateItemDal.Instance.GetWhere(new { InvestigateId = keyid }).OrderBy(a => a.SortNumber);
+                foreach (TMInvestigateItemModel iim in iims)
+                {
+                    rng = sheet.Cells[iRow, 1];
+                    rng.Value = Convert.ToString(iRow - 1);
+
+                    rng = sheet.Cells[iRow, 2];
+                    rng.Value = DB.BPM.Core.Dal.DicDal.Instance.Get(iim.Kind).Title;
+
+                    rng = sheet.Cells[iRow, 3];
+                    rng.Value = iim.Title;
+
+                    iCol = 0;
+                    IEnumerable<TMInvestigateItemChoiceModel> iicms = TMInvestigateItemChoiceDal.Instance.GetWhere(new { InvestigateItemId = iim.KeyId }).OrderBy(a => a.SortNumber);
+                    foreach (TMInvestigateItemChoiceModel iicm in iicms)
+                    {
+                        rng = sheet.Cells[1, iCol * 2 + 4];
+                        rng.Value = "选项" + (iCol + 1);
+                        
+                        rng = sheet.Cells[iRow, iCol * 2 + 4];
+                        rng.Value = iicm.Title;
+
+                        rng = sheet.Cells[1, iCol * 2 + 5];
+                        rng.Value = "分值" + (iCol + 1); 
+                        
+                        rng = sheet.Cells[iRow, iCol * 2 + 5];
+                        rng.Value = Convert.ToString(iicm.Score);
+
+                        iCol++;
+                    }
+
+                    iRow++;
+                }
+
+                file = string.Format("~/temp/{0}.xlsx", Convert.ToString(DateTime.Now.Ticks, 16));
+                book.SaveAs(System.Web.HttpContext.Current.Server.MapPath(file));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return "error_" + e.Message;
+            }
+            finally
+            {
                 if (app != null)
                 {
                     app.Quit();
