@@ -79,7 +79,7 @@ namespace DB.BPM.Admin.TM.ashx
                     break;
                 case "investigate_teacher_list":
                     context.Response.Write(TMInvestigateBll.Instance.GetTeacherInvestigatesByStudentIdJson(
-                        SysVisitor.Instance.GetCurrentStudent().KeyId, 
+                        SysVisitor.Instance.GetCurrentStudent().KeyId,
                         PublicMethod.GetInt(context.Request.Params["kind"]),
                         PublicMethod.GetInt(context.Request.Params["status"])
                         ));
@@ -94,7 +94,7 @@ namespace DB.BPM.Admin.TM.ashx
                 case "save_teacher":
                     List<TMInvestigateFillModel> investigates1 = JSONhelper.ConvertToObject<List<TMInvestigateFillModel>>(context.Request.Params["data"]);
                     int studentId = SysVisitor.Instance.GetCurrentStudent().KeyId;
-                    
+
                     foreach (TMInvestigateFillModel i in investigates1)
                     {
                         i.StudentId = studentId;
@@ -117,13 +117,40 @@ namespace DB.BPM.Admin.TM.ashx
                 case "show_teacher":
                     context.Response.Write(TMInvestigateBll.Instance.GetFilledTeacherInvestigateJson(
                         PublicMethod.GetInt(context.Request.Params["investigateId"]),
-                        PublicMethod.GetInt(context.Request.Params["teachCourseId"]), 
+                        PublicMethod.GetInt(context.Request.Params["teachCourseId"]),
                         PublicMethod.GetInt(context.Request.Params["studentId"])));
                     break;
                 case "show_course":
                     context.Response.Write(TMInvestigateBll.Instance.GetFilledCourseInvestigateJson(
                         PublicMethod.GetInt(context.Request.Params["investigateId"]),
                         PublicMethod.GetInt(context.Request.Params["studentId"])));
+                    break;
+                case "analyseteacher":
+                    context.Response.Write(TMInvestigateBll.Instance.AnalyseTeacher(rpm.KeyId));
+                    break;
+                case "analysecourse":
+                    context.Response.Write(TMInvestigateBll.Instance.AnalyseCourse(rpm.KeyId));
+                    break;
+                case "inport":
+                    HttpPostedFile upfile = context.Request.Files["fileToUpload"];
+                    if (upfile == null)
+                    {
+                        context.Response.Write("1");
+                    }
+                    else if (upfile.ContentLength > 1024 * 1024 * 5)//不能大于5M
+                    {
+                        context.Response.Write("2");
+                    }
+                    else
+                    {
+                        string filename = string.Format(@"{0}\{1}.{2}",  context.Server.MapPath(@"~/temp"), Convert.ToString(DateTime.Now.Ticks, 16), upfile.FileName.Substring(upfile.FileName.LastIndexOf('.') + 1));
+                        upfile.SaveAs(filename);
+
+                        context.Response.Write(TMInvestigateBll.Instance.ImportExcel(filename, rpm.KeyId));
+                    }
+                    break;
+                case "export":
+                    context.Response.Write(TMInvestigateBll.Instance.ExportExcel(rpm.KeyId));
                     break;
                 default:
                     context.Response.Write(TMInvestigateBll.Instance.GetJson(rpm.Pageindex, rpm.Pagesize, rpm.Filter, rpm.Sort, rpm.Order));
