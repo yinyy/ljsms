@@ -68,7 +68,7 @@ function createParam(action, keyid) {
 function fillInvestigate(investigateId, teachCourseId) {
     var hDialog = top.jQuery.hDialog({
         title: '填写问卷', max: true,
-        href: '/Student/html/InvestigateFrom.aspx',
+        href: '/TM/InvestigateForm.aspx?InvestigateId='+investigateId+'&TeachCourseId='+teachCourseId,
         iconCls: 'icon-add',
         submit: function () {
             if (InvestigateOp.check()) {
@@ -95,7 +95,7 @@ function fillInvestigate(investigateId, teachCourseId) {
 function showInvestigate(investigateId, teachCourseId, studentId) {
     var hDialog = top.jQuery.hDialog({
         title: '查看问卷', max: true,
-        href: '/Student/html/InvestigateFrom.aspx',
+        href: '/TM/InvestigateForm.aspx?InvestigateId=' + investigateId + '&TeachCourseId=' + teachCourseId,
         iconCls: 'icon-add',
         submit: function () {
             hDialog.dialog('close');
