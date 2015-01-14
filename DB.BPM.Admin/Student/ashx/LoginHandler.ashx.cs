@@ -23,7 +23,7 @@ namespace DB.BPM.Admin.Student.ashx
 
             var msg = new { success = false, message = "对不起，您输入的用户名不存在，请检查。" };
 
-            TMStudentsModel student = TMStudentsDal.Instance.GetWhere(new { StudentNumber = userName }).FirstOrDefault();
+            TMStudentsModel student = TMStudentsDal.Instance.GetWhere(new { Card = userName }).FirstOrDefault();
             if (student != null)
             {
                 if (student.Card == password)
