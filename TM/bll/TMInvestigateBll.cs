@@ -361,6 +361,7 @@ namespace TM.Bll
                 if (app != null)
                 {
                     app.Quit();
+                    app = null;
                 }
             }
 
@@ -450,6 +451,7 @@ namespace TM.Bll
                 if (app != null)
                 {
                     app.Quit();
+                    app = null;
                 }
             }
 
@@ -493,7 +495,7 @@ namespace TM.Bll
 
                     rng = sheet.Cells[iRow, 2];
                     tmp = rng.Value;
-                    iim.Kind = tmp == "单选" ? 196 : 197;//这块是一个bug
+                    iim.Kind = tmp == "单选题" ? 196 : 197;//这块是一个bug
 
                     rng = sheet.Cells[iRow, 3];
                     tmp = rng.Value;
@@ -540,6 +542,7 @@ namespace TM.Bll
                 if (app != null)
                 {
                     app.Quit();
+                    app = null;
                 }
             }
 
@@ -615,6 +618,7 @@ namespace TM.Bll
                 if (app != null)
                 {
                     app.Quit();
+                    app = null;
                 }
             }
 

@@ -3405,6 +3405,7 @@
     <Content Include="scripts\Uploadify\uploadify.allglyphs.swf" />
     <Content Include="scripts\Uploadify\uploadify.css" />
     <Content Include="scripts\Uploadify\uploadify.swf" />
+    <Content Include="Student\html\InvestigateFrom.aspx" />
     <Content Include="Student\InvestigateCourse.aspx" />
     <Content Include="Student\InvestigateTeacher.aspx" />
     <Content Include="Student\js\investigatecourse.js" />
@@ -4335,7 +4336,6 @@
     <Folder Include="dbase\" />
     <Folder Include="html\" />
     <Folder Include="js\" />
-    <Folder Include="Student\html\" />
     <Folder Include="temp\" />
   </ItemGroup>
   <ItemGroup>

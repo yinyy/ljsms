@@ -134,6 +134,29 @@
             }
         }, 'json');
     },
+    check: function(){
+        var canGoon = true;
+        //先检查一遍单选题和多选题是否都填上了
+        top.$('DIV.question').each(function (index1, item) {
+            var itemId = $(item).attr('itemId');
+            var kind = $(item).attr('kind');
+
+            if (kind == DIC.Investigate.ItemKind.Single ||
+                kind == DIC.Investigate.ItemKind.Multiple) {//单选多选
+                if ($(item).find('DIV.question_choice_range > ul > li > :checked').size() == 0) {
+                    canGoon = false;
+                    alert('还有未做答的题目，请检查！');
+                    return false;
+                }
+            }
+        });
+
+        if (!canGoon) {
+            return false;
+        }
+
+        return true;
+    },
     save: function (iid, tcid, fn) {//保存某学生、某授课的问卷信息
         var rows = [];
         //investigate.KeyId = iid;
