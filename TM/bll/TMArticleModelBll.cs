@@ -11,7 +11,8 @@ namespace TM.Bll
     {
         public static TMArticleBll Instance
         {
-            get { return SingletonProvider<TMArticleBll>.Instance; }
+            get { return SingletonProvider<TMArticleBll>.Instance; 
+            }
         }
 
         public int Add(TMArticleModel model)
