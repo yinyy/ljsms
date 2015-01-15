@@ -257,7 +257,7 @@ namespace TM.Bll
                         rng.Value = tmp.Substring(0, 1).PadRight(tmp.Length, 'X');
 
                         rng = sheet.Cells[iRow, 5];
-                        rng.Value = "'" + reader["Score"].ToString();
+                        rng.Value = string.Format("{0:0.000}", reader["Score"]);
                     }
                 }
                 #endregion
@@ -300,7 +300,7 @@ namespace TM.Bll
                         rng.Value = reader["ClassName"].ToString();
 
                         rng = sheet.Cells[iRow, 4];
-                        rng.Value = "'" + reader["Score"].ToString();
+                        rng.Value = string.Format("{0:0.000}", reader["Score"]);
                     }
                 }
                 #endregion
@@ -337,7 +337,7 @@ namespace TM.Bll
                         rng.Value = reader["CourseName"].ToString();
 
                         rng = sheet.Cells[iRow, 3];
-                        rng.Value = "'" + reader["Score"].ToString();
+                        rng.Value = string.Format("{0:0.000}", reader["Score"]);
                     }
                 }
                 #endregion
@@ -640,7 +640,7 @@ namespace TM.Bll
                 {
                     while (reader.Read())
                     {
-                        array.Add(new { TrueName = reader["TrueName"].ToString(), CourseName = reader["CourseName"].ToString(), Score = reader["Score"].ToString() });
+                        array.Add(new { TrueName = reader["TrueName"].ToString(), CourseName = reader["CourseName"].ToString(), Score = string.Format("{0:0.000}", reader["Score"]) });
                     }
                 }
                 #endregion

@@ -76,12 +76,13 @@ function fillInvestigate(investigateId, teachCourseId) {
                     InvestigateOp.save(investigateId, teachCourseId, function (d) {
                         if (parseInt(d) > 0) {
                             msg.ok('添加成功！');
-                            hDialog.dialog('close');
                             grid.reload();
                         } else {
                             MessageOrRedirect(d);
                         }
                     });
+
+                    hDialog.dialog('close');
                 }
             }
             return false;
