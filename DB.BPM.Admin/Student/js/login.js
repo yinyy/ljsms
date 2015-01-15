@@ -5,24 +5,24 @@ var savecookdays = [{ "id": 1, "text": "不保存", "selected": true }, { "id": 
 $(function () {
 
     var h = 355;
-  
+
     if (!showValidateCode) {
         h = 275;
-        
+
     }
 
-     
+
     $.hDialog({
-        title:'用户登录',boxPadding:'2px',
-        width: 400,closable:false,
+        title: '学生用户登录', boxPadding: '2px',
+        width: 400, closable: false,
         height: h, iconCls: 'icon-user',
-        modal:false,draggable:false,
+        modal: false, draggable: false,
         href: '/common/html/loginForm.html',
-        buttons:[{
+        buttons: [{
             text: '登录',
             iconCls: 'icon-user',
             handler: login
-        }],align:'center',
+        }], align: 'center',
         onLoad: function () {
             if (!showValidateCode) {
                 $('#vCodebox').hide();
@@ -38,11 +38,11 @@ $(function () {
                 $(this).attr('src', "validateCode.hxl?t=4&n=" + Math.random());
             });
 
-            $('#txtUserName').val('1205063366');
-            $('#txtPassword').val('370503199603150023');
+            $('#txtUserName').val('学生身份证号');
+            $('#txtPassword').val('');
         }
     });
-    
+
     //响应键盘的回车事件
     $(this).keydown(function (event) {
         if (event.keyCode == 13) {
@@ -52,18 +52,18 @@ $(function () {
         }
     });
 
-    
+
 });
 
 
 
 function login() {
-    
+
     $('#loginForm').form('submit', {
         url: 'ashx/LoginHandler.ashx',//'ashx/loginhandler.ashx',
         onSubmit: function () {
             var isValid = $('#loginForm').form('validate');
-            if(isValid) {
+            if (isValid) {
                 $.hLoading.show({ msg: '正在登录中...' });
             }
             return isValid;
@@ -94,7 +94,7 @@ function login() {
     });
 }
 
-function aboutMe(){
+function aboutMe() {
     $.hDialog({
         title: '帮助',
         width: 400,
