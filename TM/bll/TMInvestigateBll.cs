@@ -14,6 +14,8 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
 using System.IO;
 using System.Web;
+using System.Data;
+using System.Collections;
 
 namespace TM.Bll
 {
@@ -371,16 +373,13 @@ namespace TM.Bll
         public string AnalyseCourse(int kid)
         {
             string sql = string.Format("select Sys_Users.TrueName, TM_Course.CourseName,TM_ClassInfo.ClassName, t.Col1, t.Col2 from (" +
-                "SELECT TeachCourseId, classid, 'Col1'=stuff((select '；' + Col1 from TM_InvestigateFill2 f2 where f2.InvestigateId = {0} for xml path('')) , 1 , 1 , ''),'Col2'=stuff((select '；' + Col2 from TM_InvestigateFill2 f2 where f2.InvestigateId = {0} for xml path('')) , 1 , 1 , '')" +
-                "FROM dbo.TM_InvestigateFill2 INNER JOIN " +
-                "dbo.TM_Students ON dbo.TM_InvestigateFill2.StudentId = dbo.TM_Students.KeyId INNER JOIN " +
-                "dbo.TM_ClassInfo ON dbo.TM_Students.ClassID = dbo.TM_ClassInfo.KeyId " +
-                "WHERE (dbo.TM_InvestigateFill2.InvestigateId = {0}) " +
-                "group by TeachCourseId, classid) t inner join TM_TeachCourse on t.TeachCourseId=TM_TeachCourse.KeyId " +
+                "SELECT d.TeachCourseId, d.ClassId, 'Col1'=stuff((select '；' + Col1 from V_TM_Fill2_Detail f2 where f2.InvestigateId = {0} and f2.TeachCourseId=d.TeachCourseId and f2.ClassId=d.ClassId for xml path('')) , 1 , 1 , ''),'Col2'=stuff((select '；' + Col2 from V_TM_Fill2_Detail f2 where f2.InvestigateId = {0} and f2.TeachCourseId=d.TeachCourseId and f2.ClassId=d.ClassId  for xml path('')) , 1 , 1 , '')" +
+                "FROM dbo.V_TM_Fill2_Detail d " +
+                "WHERE (d.InvestigateId = {0}) " +
+                "group by d.TeachCourseId, d.ClassId) t inner join TM_TeachCourse on t.TeachCourseId=TM_TeachCourse.KeyId " +
                 "inner join Sys_Users on TM_TeachCourse.TeacherID=Sys_Users.KeyId " +
                 "inner join TM_Course on TM_TeachCourse.CourseID = TM_Course.KeyId " +
                 "inner join TM_ClassInfo on t.ClassID=TM_ClassInfo.KeyId", kid);
-
 
             Excel.Application app = new Excel.Application();
             Excel.Workbook book = app.Workbooks.Add();
@@ -589,13 +588,13 @@ namespace TM.Bll
                     {
                         rng = sheet.Cells[1, iCol * 2 + 4];
                         rng.Value = "选项" + (iCol + 1);
-                        
+
                         rng = sheet.Cells[iRow, iCol * 2 + 4];
                         rng.Value = iicm.Title;
 
                         rng = sheet.Cells[1, iCol * 2 + 5];
-                        rng.Value = "分值" + (iCol + 1); 
-                        
+                        rng.Value = "分值" + (iCol + 1);
+
                         rng = sheet.Cells[iRow, iCol * 2 + 5];
                         rng.Value = Convert.ToString(iicm.Score);
 
@@ -623,6 +622,72 @@ namespace TM.Bll
             }
 
             return "success_" + file;
+        }
+
+        public string AnalyseTeacher2(int kid)
+        {
+            string sql = "SELECT dbo.TM_Course.CourseName, dbo.Sys_Users.TrueName, t.Score " +
+                "FROM (select InvestigateId, TeachCourseId, AVG(V_TM_Fill1_Detail.Score) as Score from V_TM_Fill1_Detail where InvestigateId = " + kid + " group by InvestigateId, TeachCourseId) t INNER JOIN " +
+                "dbo.TM_TeachCourse ON t.TeachCourseId = dbo.TM_TeachCourse.KeyId INNER JOIN " +
+                "dbo.Sys_Users ON dbo.TM_TeachCourse.TeacherID = dbo.Sys_Users.KeyId INNER JOIN " +
+                "dbo.TM_Course ON dbo.TM_TeachCourse.CourseID = dbo.TM_Course.KeyId";
+            ArrayList array = new ArrayList(); ;
+
+            try
+            {
+                #region 按教师统计
+                using (SqlDataReader reader = DbUtils.GetReader(sql))
+                {
+                    while (reader.Read())
+                    {
+                        array.Add(new { TrueName = reader["TrueName"].ToString(), CourseName = reader["CourseName"].ToString(), Score = reader["Score"].ToString() });
+                    }
+                }
+                #endregion
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return JSONhelper.ToJson(array);
+        }
+
+        public string AnalyseCourse2(int kid)
+        {
+            string sql = string.Format("select Sys_Users.TrueName, TM_Course.CourseName,TM_ClassInfo.ClassName, t.Col1, t.Col2 from (" +
+                    "SELECT d.TeachCourseId, d.ClassId, 'Col1'=stuff((select '；' + Col1 from V_TM_Fill2_Detail f2 where f2.InvestigateId = {0} and f2.TeachCourseId=d.TeachCourseId and f2.ClassId=d.ClassId for xml path('')) , 1 , 1 , ''),'Col2'=stuff((select '；' + Col2 from V_TM_Fill2_Detail f2 where f2.InvestigateId = {0} and f2.TeachCourseId=d.TeachCourseId and f2.ClassId=d.ClassId  for xml path('')) , 1 , 1 , '')" +
+                    "FROM dbo.V_TM_Fill2_Detail d " +
+                    "WHERE (d.InvestigateId = {0}) " +
+                    "group by d.TeachCourseId, d.ClassId) t inner join TM_TeachCourse on t.TeachCourseId=TM_TeachCourse.KeyId " +
+                    "inner join Sys_Users on TM_TeachCourse.TeacherID=Sys_Users.KeyId " +
+                    "inner join TM_Course on TM_TeachCourse.CourseID = TM_Course.KeyId " +
+                    "inner join TM_ClassInfo on t.ClassID=TM_ClassInfo.KeyId", kid);
+            ArrayList array = new ArrayList();
+
+            try
+            {
+                using (SqlDataReader reader = DbUtils.GetReader(sql))
+                {
+                    while (reader.Read())
+                    {
+                        array.Add(new
+                        {
+                            TrueName = reader["TrueName"].ToString(),
+                            CourseName = reader["CourseName"].ToString(),
+                            ClassName = reader["ClassName"].ToString(),
+                            Col1 = reader["Col1"].ToString(),
+                            Col2 = reader["Col2"].ToString()
+                        });
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return JSONhelper.ToJson(array);
         }
     }
 

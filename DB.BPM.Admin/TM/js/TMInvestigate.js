@@ -80,8 +80,8 @@ var grid = {
                 }},
             { title: '答题数量', field: 'AnswerCount', width: 90, align: 'center' },
             {
-                title: '问卷分析', field: 'KeyId', width: 120, align: 'center', formatter: function (value, row, index) {
-                    return '<a href="javascript:void(0);" onclick="analyse(' + row.KeyId + ', '+row.Kind+')">分析</a>'
+                title: '查看', field: 'KeyId', width: 100, align: 'center', formatter: function (value, row, index) {
+                    return '<a href="javascript:void(0);" onclick="analyse(' + row.KeyId + ', ' + row.Kind + ')">查看</a>';
                 }}
             ]],
             pagination: true,
@@ -435,13 +435,104 @@ var CRUD = {
 };
 
 function analyse(iid, kind) {
-    $.get(actionURL, createParam((kind == DIC.Investigate.Kind.Teacher)?'analyseteacher':'analysecourse', iid), function (data) {
-        if (data.indexOf('error_')!=-1) {
-            alert(data.substring(6));
-        }else if(data.indexOf('success_')!=-1){
-            window.open('../'+data.substring(10));
-        }else{
-            alert(data);
-        }
-    }, 'text');
+    if ((kind == DIC.Investigate.Kind.Teacher)) {
+        var hDialog = top.jQuery.hDialog({
+            title: '查看', width: 520, height: 480,
+            content: '<table id="list2" ></table>  ',
+            iconCls: 'icon-copy',
+            buttons: [{
+                text: '下载',
+                handler: function () {
+                    msg.warning('正在下载数据，请耐心等待......');
+
+                    $.get(actionURL, createParam('analyseteacher', iid), function (data) {
+                        if (data.indexOf('error_') != -1) {
+                            alert(data.substring(6));
+                        } else if (data.indexOf('success_') != -1) {
+                            window.open('../' + data.substring(10));
+                        } else {
+                            alert(data);
+                        }
+                    }, 'text');
+                },
+                iconCls: 'icon-download'
+            }, {
+                text: '关闭',
+                handler: function () {
+                    hDialog.dialog('close');
+                },
+                iconCls: 'icon-cancel'
+            }]
+        });
+
+        top.$('#list2').datagrid({
+            url: actionURL + '?' + createParam('analyseteacher2', iid),
+            iconCls: 'icon icon-list',
+            width: 500,
+            height: 400,
+            nowrap: false, //折行
+            rownumbers: true, //行号
+            striped: true, //隔行变色
+            idField: 'KeyId',//主键
+            singleSelect: true, //单选
+            frozenColumns: [[]],
+            columns: [[
+                { title: '姓名', field: 'TrueName', width: 150, align: 'center' },
+                { title: '课程', field: 'CourseName', width: 200, align: 'center' },
+                { title: '分数', field: 'Score', width: 90, align: 'right' },
+            ]],
+            sortName: 'TrueName',
+            sortOrder: 'asc'
+        });
+    } else {
+        var hDialog = top.jQuery.hDialog({
+            title: '查看', max:true,
+            content: '<table id="list2" ></table>  ',
+            iconCls: 'icon-copy',
+            buttons: [{
+                text: '下载',
+                handler: function () {
+                    msg.warning('正在下载数据，请耐心等待......');
+
+                    $.get(actionURL, createParam('analysecourse', iid), function (data) {
+                        if (data.indexOf('error_') != -1) {
+                            alert(data.substring(6));
+                        } else if (data.indexOf('success_') != -1) {
+                            window.open('../' + data.substring(10));
+                        } else {
+                            alert(data);
+                        }
+                    }, 'text');
+                },
+                iconCls: 'icon-download'
+            }, {
+                text: '关闭',
+                handler: function () {
+                    hDialog.dialog('close');
+                },
+                iconCls: 'icon-cancel'
+            }]
+        });
+
+        top.$('#list2').datagrid({
+            url: actionURL + '?' + createParam('analysecourse2', iid),
+            iconCls: 'icon icon-list',
+            max:true,
+            nowrap: false, //折行
+            rownumbers: true, //行号
+            striped: true, //隔行变色
+            idField: 'KeyId',//主键
+            singleSelect: true, //单选
+            frozenColumns: [[]],
+            columns: [[
+                { title: '姓名', field: 'TrueName', width: 150, align: 'center' },
+                { title: '课程', field: 'CourseName', width: 200, align: 'center' },
+                { title: '班级', field: 'ClassName', width: 150, align: 'center' },
+                { title: '存在的问题', field: 'Col1', align: 'center'},
+                { title: '反馈意见及建议', field: 'Col2', align: 'center'}
+            ]],
+            sortName: 'TrueName',
+            sortOrder: 'asc'
+        });
+    }
 }

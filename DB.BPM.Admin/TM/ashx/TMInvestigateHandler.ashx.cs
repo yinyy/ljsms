@@ -127,9 +127,16 @@ namespace DB.BPM.Admin.TM.ashx
                     break;
                 case "analyseteacher":
                     context.Response.Write(TMInvestigateBll.Instance.AnalyseTeacher(rpm.KeyId));
+                    //context.Response.Write(TMInvestigateBll.Instance.AnalyseTeacher2(rpm.KeyId));
+                    break;
+                case "analyseteacher2":
+                    context.Response.Write(TMInvestigateBll.Instance.AnalyseTeacher2(rpm.KeyId));
                     break;
                 case "analysecourse":
                     context.Response.Write(TMInvestigateBll.Instance.AnalyseCourse(rpm.KeyId));
+                    break;
+                case "analysecourse2":
+                    context.Response.Write(TMInvestigateBll.Instance.AnalyseCourse2(rpm.KeyId));
                     break;
                 case "inport":
                     HttpPostedFile upfile = context.Request.Files["fileToUpload"];
